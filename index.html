@@ -192,19 +192,16 @@
     .app-preview {
       height: 200px;
       border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       margin-bottom: 20px;
-      background: var(--preview-bg);
+      overflow: hidden;
     }
 
-    .app-preview-label {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 22px;
-      font-weight: 400;
-      color: rgba(255, 255, 255, 0.25);
-      letter-spacing: 0.02em;
+    .app-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 12px;
     }
 
     /* ========= APP META ROW ========= */
@@ -431,7 +428,7 @@
       <section class="app-card featured" style="--accent:#F0913A;--accent-glow:rgba(240,145,58,0.1);--preview-bg:linear-gradient(135deg,rgba(240,145,58,0.125),rgba(240,145,58,0.02))" aria-label="Harmonic Intake app">
         <div class="app-card-inner">
           <div class="app-preview">
-            <span class="app-preview-label">Harmonic Intake</span>
+            <img src="images/HarmonicIntake.jpeg" alt="Harmonic Intake screenshot">
           </div>
           <div class="app-details">
             <div class="app-meta">
@@ -458,7 +455,7 @@
       <section class="app-card" style="--accent:#4ECDC4;--accent-glow:rgba(78,205,196,0.1);--preview-bg:linear-gradient(135deg,rgba(78,205,196,0.125),rgba(78,205,196,0.02))" aria-label="Earth Pulse app">
         <div class="app-card-inner">
           <div class="app-preview">
-            <span class="app-preview-label">Earth Pulse</span>
+            <img src="images/EarthPulse.jpeg" alt="Earth Pulse screenshot">
           </div>
           <div class="app-details">
             <div class="app-meta">
@@ -485,7 +482,7 @@
       <section class="app-card" style="--accent:#00BCD4;--accent-glow:rgba(0,188,212,0.1);--preview-bg:linear-gradient(135deg,rgba(0,188,212,0.125),rgba(0,188,212,0.02))" aria-label="Overtone Singer app">
         <div class="app-card-inner">
           <div class="app-preview">
-            <span class="app-preview-label">Overtone Singer</span>
+            <img src="images/OvertoneSinger.png" alt="Overtone Singer screenshot">
           </div>
           <div class="app-details">
             <div class="app-meta">
@@ -511,7 +508,7 @@
       <section class="app-card" style="--accent:#7C6FFF;--accent-glow:rgba(124,111,255,0.1);--preview-bg:linear-gradient(135deg,rgba(124,111,255,0.125),rgba(124,111,255,0.02))" aria-label="NestorLab app">
         <div class="app-card-inner">
           <div class="app-preview">
-            <span class="app-preview-label">NestorLab</span>
+            <img src="images/BineuralBeats.jpeg" alt="NestorLab screenshot">
           </div>
           <div class="app-details">
             <div class="app-meta">
@@ -537,7 +534,7 @@
       <section class="app-card" style="--accent:#4CAF50;--accent-glow:rgba(76,175,80,0.1);--preview-bg:linear-gradient(135deg,rgba(76,175,80,0.125),rgba(76,175,80,0.02))" aria-label="Resonance Body Map app">
         <div class="app-card-inner">
           <div class="app-preview">
-            <span class="app-preview-label">Resonance Body Map</span>
+            <img src="images/ResonanceBody.jpeg" alt="Resonance Body Map screenshot">
           </div>
           <div class="app-details">
             <div class="app-meta">
