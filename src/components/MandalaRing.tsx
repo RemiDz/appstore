@@ -2,7 +2,7 @@
 import { pentagonAngles, type ElementName } from '@/lib/elements'
 
 export default function MandalaRing() {
-  const size = 'min(90vw, 90vh)'
+  const size = 'min(80vw, 80vh)'
   const svgSize = 400
   const cx = svgSize / 2
   const cy = svgSize / 2
@@ -31,24 +31,34 @@ export default function MandalaRing() {
     return { x1, y1, x2, y2 }
   })
 
-  // Pentagram (connecting non-adjacent vertices: 0→2→4→1→3→0)
-  const pentagramOrder = [0, 2, 4, 1, 3]
-  const pentagramPath = pentagramOrder
-    .map((idx, i) => {
-      const p = pentPoints[idx]
-      return `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`
-    })
+  // Full pentagram — connect every vertex to every other (all 10 edges)
+  const pentagramLines: { x1: number; y1: number; x2: number; y2: number }[] = []
+  for (let i = 0; i < pentPoints.length; i++) {
+    for (let j = i + 1; j < pentPoints.length; j++) {
+      pentagramLines.push({
+        x1: pentPoints[i].x,
+        y1: pentPoints[i].y,
+        x2: pentPoints[j].x,
+        y2: pentPoints[j].y,
+      })
+    }
+  }
+
+  // Pentagon path for faint fill
+  const pentagonPath = pentPoints
+    .map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`)
     .join(' ') + ' Z'
 
   return (
     <div
-      className="fixed pointer-events-none"
+      className="pointer-events-none"
       style={{
-        width: size,
-        height: size,
+        position: 'fixed',
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
+        width: size,
+        height: size,
         zIndex: 1,
       }}
     >
@@ -86,14 +96,29 @@ export default function MandalaRing() {
           stroke="rgba(200,196,220, 0.04)"
           strokeWidth="1"
         />
-        {/* Pentagram lines */}
+      </svg>
+
+      {/* Static layer: pentagram lines + faint pentagon fill */}
+      <svg
+        viewBox={`0 0 ${svgSize} ${svgSize}`}
+        className="absolute inset-0 w-full h-full"
+      >
+        {/* Faint pentagon fill */}
         <path
-          d={pentagramPath}
-          fill="none"
-          stroke="rgba(200,196,220, 0.05)"
-          strokeWidth="1"
-          strokeDasharray="2 8"
+          d={pentagonPath}
+          fill="rgba(200,196,220, 0.01)"
+          stroke="none"
         />
+        {/* Full pentagram connecting lines */}
+        {pentagramLines.map((l, i) => (
+          <line
+            key={i}
+            x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2}
+            stroke="rgba(200,196,220, 0.06)"
+            strokeWidth="0.4"
+            strokeDasharray="3 12"
+          />
+        ))}
       </svg>
     </div>
   )

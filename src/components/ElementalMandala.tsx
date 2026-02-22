@@ -11,6 +11,7 @@ export default function ElementalMandala() {
   const [activeElement, setActiveElement] = useState<ElementName | null>(null)
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   const [centrePos, setCentrePos] = useState({ x: 0, y: 0 })
+  const [radius, setRadius] = useState(0)
 
   // Track mouse
   useEffect(() => {
@@ -19,20 +20,23 @@ export default function ElementalMandala() {
     return () => window.removeEventListener('mousemove', handler)
   }, [])
 
-  // Centre point — must init on mount and update on resize
+  // Centre point + radius — must init on mount and update on resize
   useEffect(() => {
-    const update = () => setCentrePos({
-      x: window.innerWidth / 2,
-      y: window.innerHeight / 2,
-    })
+    const update = () => {
+      const w = window.innerWidth
+      const h = window.innerHeight
+      setCentrePos({ x: w / 2, y: h / 2 })
+      setRadius(Math.min(w, h) * 0.28)
+    }
     update()
     window.addEventListener('resize', update)
     return () => window.removeEventListener('resize', update)
   }, [])
 
-  const radius = Math.min(centrePos.x * 2 || 1, centrePos.y * 2 || 1) * 0.28
-
   const handleClose = useCallback(() => setActiveElement(null), [])
+
+  // Don't render until we have real dimensions
+  if (centrePos.x === 0) return null
 
   // Calculate orb positions
   const orbData = (Object.entries(pentagonAngles) as [ElementName, number][]).map(
@@ -55,7 +59,7 @@ export default function ElementalMandala() {
         <div
           key={name}
           style={{
-            position: 'absolute',
+            position: 'fixed',
             left: x,
             top: y,
             transform: 'translate(-50%, -50%)',
