@@ -218,52 +218,58 @@ export default function ElementReveal({ app, element, onClose }: ElementRevealPr
           ))}
         </div>
 
-        {/* Bottom row: pricing + enter button */}
-        <div className="flex items-center justify-between mt-8">
+        {/* Bottom row — pricing left, Enter button right */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          marginTop: 28,
+          paddingTop: 20,
+          borderTop: '1px solid rgba(200,196,220, 0.08)',
+        }}>
           {/* Pricing */}
-          <span
-            className="font-mono"
-            style={{
-              fontSize: 10,
-              textTransform: 'uppercase',
-              letterSpacing: '0.15em',
-              color:
-                app.pricing === 'pro'
-                  ? '#E8C97A'
-                  : 'rgba(200,196,220, 0.4)',
-            }}
-          >
-            {app.pricing === 'pro' ? `Pro \u00B7 ${app.price}` : 'Free'}
-          </span>
+          <div style={{
+            fontFamily: 'var(--font-mono)',
+            fontSize: 10,
+            letterSpacing: '0.2em',
+            textTransform: 'uppercase' as const,
+            color: app.pricing === 'pro' ? '#E8C97A' : 'rgba(200,196,220,0.4)',
+          }}>
+            {app.pricing === 'pro' ? `Pro · ${app.price}` : 'Free'}
+          </div>
 
           {/* Enter button */}
           <a
             href={app.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono inline-flex items-center"
             style={{
-              background: `linear-gradient(135deg, ${element.glowColor} 0.2), ${element.glowColor} 0.08))`,
-              border: `1px solid ${element.glowColor} 0.35)`,
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 8,
+              background: `linear-gradient(135deg, ${element.color}33, ${element.color}14)`,
+              border: `1px solid ${element.color}59`,
               color: element.color,
               borderRadius: 12,
-              padding: '12px 28px',
-              fontSize: 13,
-              letterSpacing: '0.1em',
+              padding: '11px 24px',
+              fontFamily: 'var(--font-mono)',
+              fontSize: 12,
+              letterSpacing: '0.12em',
               textDecoration: 'none',
-              cursor: 'pointer',
               transition: 'all 0.3s ease',
+              cursor: 'pointer',
+              whiteSpace: 'nowrap',
             }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'scale(1.03)'
-              e.currentTarget.style.boxShadow = `0 0 20px ${element.glowColor} 0.3)`
+            onMouseEnter={e => {
+              (e.currentTarget as HTMLElement).style.transform = 'scale(1.03)';
+              (e.currentTarget as HTMLElement).style.boxShadow = `0 0 20px ${element.color}4D`
             }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'scale(1)'
-              e.currentTarget.style.boxShadow = 'none'
+            onMouseLeave={e => {
+              (e.currentTarget as HTMLElement).style.transform = 'scale(1)';
+              (e.currentTarget as HTMLElement).style.boxShadow = 'none'
             }}
           >
-            Enter &rarr;
+            Enter →
           </a>
         </div>
         </motion.div>

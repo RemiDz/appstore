@@ -1,8 +1,12 @@
 'use client'
+import { motion } from 'framer-motion'
 import { pentagonAngles, type ElementName } from '@/lib/elements'
 
-export default function MandalaRing() {
-  const size = 'min(80vw, 80vh)'
+interface MandalaRingProps {
+  parallaxOffset?: { x: number; y: number }
+}
+
+export default function MandalaRing({ parallaxOffset = { x: 0, y: 0 } }: MandalaRingProps) {
   const svgSize = 400
   const cx = svgSize / 2
   const cy = svgSize / 2
@@ -56,18 +60,25 @@ export default function MandalaRing() {
         position: 'fixed',
         top: '50%',
         left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: size,
-        height: size,
+        marginLeft: 'calc(-1 * min(40vw, 40vh))',
+        marginTop: 'calc(-1 * min(40vw, 40vh))',
+        width: 'min(80vw, 80vh)',
+        height: 'min(80vw, 80vh)',
         zIndex: 1,
+        transform: `translate(${parallaxOffset.x}px, ${parallaxOffset.y}px)`,
+        transition: 'transform 0.1s ease-out',
       }}
     >
-      {/* Outer ring — slowly rotates */}
-      <svg
+      {/* Main rotating SVG — slow 120s rotation via Framer Motion */}
+      <motion.svg
+        animate={{ rotate: 360 }}
+        transition={{ duration: 120, repeat: Infinity, ease: 'linear' }}
+        width="100%"
+        height="100%"
         viewBox={`0 0 ${svgSize} ${svgSize}`}
-        className="absolute inset-0 w-full h-full"
-        style={{ animation: 'ringRotate 120s linear infinite' }}
+        style={{ transformOrigin: '50% 50%', position: 'absolute', inset: 0 }}
       >
+        {/* Outer ring */}
         <circle
           cx={cx} cy={cy} r={outerR}
           fill="none"
@@ -82,27 +93,15 @@ export default function MandalaRing() {
             strokeWidth="1"
           />
         ))}
-      </svg>
 
-      {/* Inner ring — counter-rotates */}
-      <svg
-        viewBox={`0 0 ${svgSize} ${svgSize}`}
-        className="absolute inset-0 w-full h-full"
-        style={{ animation: 'ringRotateReverse 80s linear infinite' }}
-      >
+        {/* Inner ring */}
         <circle
           cx={cx} cy={cy} r={middleR}
           fill="none"
           stroke="rgba(200,196,220, 0.04)"
           strokeWidth="1"
         />
-      </svg>
 
-      {/* Static layer: pentagram lines + faint pentagon fill */}
-      <svg
-        viewBox={`0 0 ${svgSize} ${svgSize}`}
-        className="absolute inset-0 w-full h-full"
-      >
         {/* Faint pentagon fill */}
         <path
           d={pentagonPath}
@@ -119,7 +118,7 @@ export default function MandalaRing() {
             strokeDasharray="3 12"
           />
         ))}
-      </svg>
+      </motion.svg>
     </div>
   )
 }

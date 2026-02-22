@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion'
 import type { ElementConfig } from '@/lib/elements'
 import ElementSymbol from './ElementSymbol'
+import ElementalAmbience from './ElementalAmbience'
 
 interface ElementOrbProps {
   element: ElementConfig
@@ -80,6 +81,9 @@ export default function ElementOrb({
           border: `1px solid ${element.glowColor} 0.2)`,
         }}
       />
+
+      {/* Elemental ambience canvas — behind the symbol */}
+      <ElementalAmbience element={element} size={80} />
 
       {/* Sacred geometry SVG symbol — breathing */}
       <motion.div
