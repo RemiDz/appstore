@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+/* ── Tailwind v4 Theme ───────────────────────────── */
+@theme inline {
+  --color-void:       #05050F;
+  --color-indigo:     #0A0A2E;
+  --color-selenite:   #F0EEF8;
+  --color-moonsilver: #C8C4DC;
+  --color-gold:       #E8C97A;
+  --color-earth:      #A0714F;
+  --color-water:      #3A9BC1;
+  --color-fire:       #E8621A;
+  --color-air:        #7ECBCE;
+  --color-ether:      #8B6FE8;
+
+  --font-display: var(--font-cormorant), Georgia, serif;
+  --font-body:    var(--font-lato), "Helvetica Neue", sans-serif;
+  --font-mono:    var(--font-jetbrains), monospace;
+}
+
+/* ── CSS Custom Properties ─────────────────────────── */
+:root {
+  --void-black:     #05050F;
+  --deep-indigo:    #0A0A2E;
+  --selenite-white: #F0EEF8;
+  --moonsilver:     #C8C4DC;
+  --lunar-gold:     #E8C97A;
+  --ease-spring:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-lunar:     cubic-bezier(0.25, 0.1, 0.25, 1.0);
+}
+
+/* ── Base Reset ─────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: var(--void-black);
+  color: var(--selenite-white);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: none;
+}
+
+/* Re-enable scroll + cursor on mobile */
+@media (max-width: 768px) {
+  html, body { overflow: auto; cursor: auto; }
+}
+
+/* ── Scrollbar (mobile fallback) ────────────────────── */
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track  { background: #05050F; }
+::-webkit-scrollbar-thumb  { background: #0A0A2E; border-radius: 2px; }
+
+/* ── Font Helpers ───────────────────────────────────── */
+.font-display { font-family: var(--font-display); }
+.font-mono    { font-family: var(--font-mono); }
+
+/* ── Keyframe Animations ────────────────────────────── */
+@keyframes breathe {
+  0%, 100% { transform: scale(1);    opacity: 0.85; }
+  50%       { transform: scale(1.06); opacity: 1; }
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0); }
+  25%       { transform: translate(3px, -5px); }
+  75%       { transform: translate(-3px, 3px); }
+}
+
+@keyframes ringRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes ringRotateReverse {
+  from { transform: rotate(360deg); }
+  to   { transform: rotate(0deg); }
+}
+
+@keyframes entryFadeIn {
+  from { opacity: 0; transform: scale(0.94); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes revealBloom {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.85); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes particleRise {
+  0%   { opacity: 0; transform: translateY(0) scale(0); }
+  15%  { opacity: 1; transform: translateY(-8px) scale(1); }
+  100% { opacity: 0; transform: translateY(-60px) scale(0.3); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px var(--glow-color, rgba(139,111,232,0.3)); }
+  50%       { box-shadow: 0 0 60px var(--glow-color, rgba(139,111,232,0.5)), 0 0 120px var(--glow-color, rgba(139,111,232,0.2)); }
+}
+
+@keyframes shimmerLine {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+@keyframes cursorTrail {
+  0%   { opacity: 0.8; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0); }
+}
+
+@property --border-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes borderRotate {
+  to { --border-angle: 360deg; }
+}
