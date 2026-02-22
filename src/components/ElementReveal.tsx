@@ -17,7 +17,7 @@ const backdropVariants: Variants = {
 }
 
 const panelVariants: Variants = {
-  hidden: { opacity: 0, scale: 0.85, y: 20 },
+  hidden: { opacity: 0, scale: 0.88, y: 16 },
   visible: {
     opacity: 1,
     scale: 1,
@@ -27,7 +27,7 @@ const panelVariants: Variants = {
   exit: {
     opacity: 0,
     scale: 0.92,
-    y: 10,
+    y: 8,
     transition: { duration: 0.3, ease: 'easeIn' },
   },
 }
@@ -63,14 +63,20 @@ export default function ElementReveal({ app, element, onClose }: ElementRevealPr
 
       {/* Panel */}
       <motion.div
-        className="absolute"
+        variants={panelVariants}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
         style={{
+          position: 'fixed',
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          width: 'min(520px, 90vw)',
+          maxWidth: 'min(520px, 90vw)',
+          width: '100%',
           maxHeight: '90vh',
           overflowY: 'auto',
+          zIndex: 101,
           background: `linear-gradient(135deg,
             rgba(240,238,248, 0.03) 0%,
             rgba(200,196,220, 0.06) 50%,
@@ -86,10 +92,6 @@ export default function ElementReveal({ app, element, onClose }: ElementRevealPr
           `,
           padding: 40,
         }}
-        variants={panelVariants}
-        initial="hidden"
-        animate="visible"
-        exit="exit"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
