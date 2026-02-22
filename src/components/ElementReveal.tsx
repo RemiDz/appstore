@@ -61,39 +61,46 @@ export default function ElementReveal({ app, element, onClose }: ElementRevealPr
         onClick={onClose}
       />
 
-      {/* Panel */}
-      <motion.div
-        variants={panelVariants}
-        initial="hidden"
-        animate="visible"
-        exit="exit"
+      {/* Panel centering wrapper — fixed + flex so Framer Motion transforms don't conflict */}
+      <div
         style={{
           position: 'fixed',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          maxWidth: 'min(520px, 90vw)',
-          width: '100%',
-          maxHeight: '90vh',
-          overflowY: 'auto',
+          inset: 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
           zIndex: 101,
-          background: `linear-gradient(135deg,
-            rgba(240,238,248, 0.03) 0%,
-            rgba(200,196,220, 0.06) 50%,
-            rgba(240,238,248, 0.02) 100%
-          )`,
-          backdropFilter: 'blur(24px) saturate(1.3)',
-          border: `1px solid ${element.glowColor} 0.2)`,
-          borderRadius: 24,
-          boxShadow: `
-            0 0 0 1px ${element.glowColor} 0.05) inset,
-            0 0 80px ${element.glowColor} 0.12),
-            0 32px 80px rgba(0,0,0, 0.7)
-          `,
-          padding: 40,
+          pointerEvents: 'none',
         }}
-        onClick={(e) => e.stopPropagation()}
       >
+        <motion.div
+          variants={panelVariants}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          style={{
+            maxWidth: 'min(520px, 90vw)',
+            width: '100%',
+            maxHeight: '90vh',
+            overflowY: 'auto',
+            pointerEvents: 'auto',
+            background: `linear-gradient(135deg,
+              rgba(240,238,248, 0.03) 0%,
+              rgba(200,196,220, 0.06) 50%,
+              rgba(240,238,248, 0.02) 100%
+            )`,
+            backdropFilter: 'blur(24px) saturate(1.3)',
+            border: `1px solid ${element.glowColor} 0.2)`,
+            borderRadius: 24,
+            boxShadow: `
+              0 0 0 1px ${element.glowColor} 0.05) inset,
+              0 0 80px ${element.glowColor} 0.12),
+              0 32px 80px rgba(0,0,0, 0.7)
+            `,
+            padding: 40,
+          }}
+          onClick={(e) => e.stopPropagation()}
+        >
         {/* Close button */}
         <button
           onClick={onClose}
@@ -259,7 +266,8 @@ export default function ElementReveal({ app, element, onClose }: ElementRevealPr
             Enter &rarr;
           </a>
         </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </motion.div>
   )
 }
