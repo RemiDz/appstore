@@ -42,12 +42,26 @@ export default function Home() {
       {/* Content */}
       <div className="relative z-10 flex flex-col min-h-screen">
         {/* Header */}
-        <header className="pt-12 pb-4 text-center">
-          <h1 className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/35">
+        <header className="text-center" style={{ paddingTop: 'calc(env(safe-area-inset-top, 20px) + 4rem)', paddingBottom: '12px' }}>
+          <h1
+            className="font-mono mb-1.5"
+            style={{ fontSize: '13px', fontWeight: 300, letterSpacing: '0.35em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)' }}
+          >
             Harmonic Waves
           </h1>
-          <p className="font-display text-sm italic text-white/20 mt-1">
+          <p
+            className="font-display mb-4"
+            style={{ fontSize: '14px', fontStyle: 'italic', fontWeight: 300, color: '#c9a84c', opacity: 0.7 }}
+          >
             Tools for Sound Healers
+          </p>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="w-12 h-px bg-white/10" />
+            <span className="text-white/20 text-xs">&#10022;</span>
+            <div className="w-12 h-px bg-white/10" />
+          </div>
+          <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.25)', letterSpacing: '0.08em' }}>
+            Tap to explore
           </p>
         </header>
 

@@ -7,14 +7,28 @@ export default function OvertoneIcon({ size = 48, className = '', color = 'white
       fill="none"
       className={className}
     >
-      {/* Circular head */}
-      <circle cx="14" cy="18" r="9" stroke={color} strokeWidth={1.8} />
-      {/* Open mouth — small circle on right side of head */}
-      <circle cx="21.5" cy="21" r="2" stroke={color} strokeWidth={1.5} />
-      {/* Sound wave arcs from mouth */}
-      <path d="M25 18C26.5 19.5 26.5 23 25 24.5" stroke={color} strokeWidth={1.5} strokeLinecap="round" />
-      <path d="M28 16C30.5 18.5 30.5 24 28 26.5" stroke={color} strokeWidth={1.5} strokeLinecap="round" />
-      <path d="M31 14C34.5 17.5 34.5 25.5 31 28.5" stroke={color} strokeWidth={1.5} strokeLinecap="round" />
+      {/* Simplified head profile — half circle facing right */}
+      <path
+        d="M16 7 C10 7 7 12 7 18 C7 24 10 29 16 29 L16 27 C16 25.5 17 24 18 23 L19 22"
+        stroke={color}
+        strokeWidth={1.6}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      {/* Nose bump */}
+      <path
+        d="M16 16 L18 17.5 L17 19"
+        stroke={color}
+        strokeWidth={1.4}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      {/* Open mouth */}
+      <ellipse cx="19.5" cy="22" rx="1.3" ry="2" stroke={color} strokeWidth={1.4} />
+      {/* Three sound wave arcs */}
+      <path d="M23 19.5 C24.5 20.8 24.5 23.5 23 25" stroke={color} strokeWidth={1.5} strokeLinecap="round" />
+      <path d="M26 17.5 C28.5 19.8 28.5 25 26 27" stroke={color} strokeWidth={1.5} strokeLinecap="round" />
+      <path d="M29 15.5 C32.5 18.5 32.5 26.5 29 29" stroke={color} strokeWidth={1.5} strokeLinecap="round" />
     </svg>
   )
 }
