@@ -12,6 +12,17 @@ export interface AppNode {
 // Order: top-of-mobile-scroll first → bottom last
 export const apps: AppNode[] = [
   {
+    id: 'nestorlab',
+    name: 'NestorLab',
+    tagline: 'Frequency Synthesis Platform',
+    description:
+      'Your complete frequency toolkit. Generate binaural beats, isochronal tones, solfeggio frequencies, and custom harmonic blends. A comprehensive synthesis platform for sound healing professionals.',
+    url: 'https://nestorlab.app',
+    element: 'Ether',
+    glowColor: '#c084fc',
+    position: { x: 78, y: 62 },
+  },
+  {
     id: 'overtone-singer',
     name: 'Overtone Singer',
     tagline: 'Real-Time Overtone Visualiser',
@@ -32,17 +43,6 @@ export const apps: AppNode[] = [
     element: 'Fire',
     glowColor: '#f97316',
     position: { x: 28, y: 30 },
-  },
-  {
-    id: 'nestorlab',
-    name: 'NestorLab',
-    tagline: 'Frequency Synthesis Platform',
-    description:
-      'Your complete frequency toolkit. Generate binaural beats, isochronal tones, solfeggio frequencies, and custom harmonic blends. A comprehensive synthesis platform for sound healing professionals.',
-    url: 'https://nestorlab.app',
-    element: 'Ether',
-    glowColor: '#c084fc',
-    position: { x: 78, y: 62 },
   },
   {
     id: 'lunar-practitioner',
