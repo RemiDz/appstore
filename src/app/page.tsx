@@ -1,40 +1,51 @@
-'use client'
-import CosmicCanvas from '@/components/CosmicCanvas'
-import ElementalMandala from '@/components/ElementalMandala'
-import CursorTrail from '@/components/CursorTrail'
-import EntrySequence from '@/components/EntrySequence'
-import HubLabel from '@/components/HubLabel'
+import Starfield from '@/components/Starfield'
+import SacredGeometry from '@/components/SacredGeometry'
+import ConstellationMap from '@/components/ConstellationMap'
 
 export default function Home() {
   return (
-    <main className="fixed inset-0 overflow-hidden" style={{ background: '#05050F' }}>
-      {/* z-index 0: star field + sacred geometry */}
-      <CosmicCanvas />
+    <main className="relative min-h-screen overflow-x-hidden" style={{ background: '#0a0a1a' }}>
+      {/* Background layers */}
+      <Starfield />
+      <SacredGeometry />
 
-      {/* z-index 1: atmospheric nebula overlays */}
+      {/* Nebula glow */}
       <div
         className="fixed inset-0 pointer-events-none"
         style={{
           background: `
-            radial-gradient(ellipse 80% 60% at 50% 50%, rgba(15,12,45,0.5), transparent),
-            radial-gradient(ellipse 40% 40% at 20% 30%, rgba(20,15,55,0.2), transparent),
-            radial-gradient(ellipse 35% 45% at 80% 70%, rgba(15,18,50,0.15), transparent)
+            radial-gradient(ellipse 60% 50% at 50% 45%, rgba(99, 60, 180, 0.08), transparent),
+            radial-gradient(ellipse 40% 40% at 25% 35%, rgba(60, 80, 180, 0.05), transparent),
+            radial-gradient(ellipse 35% 45% at 75% 60%, rgba(100, 40, 160, 0.04), transparent)
           `,
           zIndex: 1,
         }}
       />
 
-      {/* z-index 2: mandala + orbs */}
-      <ElementalMandala />
+      {/* Content */}
+      <div className="relative z-10 flex flex-col min-h-screen">
+        {/* Header */}
+        <header className="pt-12 pb-4 text-center">
+          <h1 className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/35">
+            Harmonic Waves
+          </h1>
+          <p className="font-display text-sm italic text-white/20 mt-1">
+            Tools for Sound Healers
+          </p>
+        </header>
 
-      {/* z-index 3: UI labels */}
-      <HubLabel />
+        {/* Constellation */}
+        <div className="flex-1">
+          <ConstellationMap />
+        </div>
 
-      {/* z-index 10: entry sequence overlay */}
-      <EntrySequence />
-
-      {/* z-index 9999: custom cursor */}
-      <CursorTrail />
+        {/* Footer */}
+        <footer className="py-6 text-center">
+          <p className="text-xs text-white/15">
+            Created by Remigijus Dzingelevi&#269;ius
+          </p>
+        </footer>
+      </div>
     </main>
   )
 }

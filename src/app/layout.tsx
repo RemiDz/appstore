@@ -25,11 +25,12 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: 'Harmonic Waves — Tools for Sound Healers',
-  description: 'Five elemental browser tools for sound healing practitioners. No accounts. No tracking. No cost.',
+  description: 'A curated collection of digital tools for sound healing practitioners. Explore frequency analysis, lunar guidance, overtone visualisation, and more.',
   openGraph: {
-    title: 'Harmonic Waves',
-    description: 'Five elemental tools for sound healers.',
+    title: 'Harmonic Waves — Tools for Sound Healers',
+    description: 'Digital tools for the modern sound healer.',
     type: 'website',
+    images: ['/og-image.png'],
   },
 }
 
