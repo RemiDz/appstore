@@ -17,6 +17,14 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; className?: s
   'nestorlab': NestorLabIcon,
 }
 
+const elementEmoji: Record<string, string> = {
+  Earth: '\u{1F30D}',
+  Water: '\u{1F30A}',
+  Fire: '\u{1F525}',
+  Air: '\u{1F32C}\uFE0F',
+  Ether: '\u2728',
+}
+
 interface NodeModalProps {
   app: AppNode | null
   onClose: () => void
@@ -24,6 +32,7 @@ interface NodeModalProps {
 
 export default function NodeModal({ app, onClose }: NodeModalProps) {
   const Icon = app ? iconMap[app.id] : null
+  const gc = app?.glowColor ?? '#fff'
 
   return (
     <AnimatePresence>
@@ -49,51 +58,130 @@ export default function NodeModal({ app, onClose }: NodeModalProps) {
             transition={{ duration: 0.25, ease: 'easeOut' }}
           >
             <div
-              className="pointer-events-auto w-full max-w-[320px] rounded-2xl border p-6"
+              className="pointer-events-auto w-full max-w-[320px] relative"
               style={{
-                background: 'rgba(15, 15, 30, 0.9)',
-                backdropFilter: 'blur(20px)',
-                WebkitBackdropFilter: 'blur(20px)',
-                borderColor: `${app.glowColor}30`,
+                background: 'rgba(10, 10, 30, 0.92)',
+                backdropFilter: 'blur(24px)',
+                WebkitBackdropFilter: 'blur(24px)',
+                border: '1px solid rgba(255, 255, 255, 0.08)',
+                borderRadius: '20px',
+                padding: '32px 24px',
+                boxShadow: `0 0 40px ${gc}15, 0 0 80px rgba(0, 0, 0, 0.5)`,
               }}
             >
-              {/* Icon */}
-              <div className="flex justify-center mb-4">
+              {/* Close button */}
+              <button
+                onClick={onClose}
+                className="absolute flex items-center justify-center cursor-pointer transition-all duration-200"
+                style={{
+                  top: '12px',
+                  right: '12px',
+                  width: '32px',
+                  height: '32px',
+                  borderRadius: '50%',
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  color: 'rgba(255, 255, 255, 0.4)',
+                  fontSize: '14px',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'
+                  e.currentTarget.style.color = 'white'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)'
+                  e.currentTarget.style.color = 'rgba(255, 255, 255, 0.4)'
+                }}
+              >
+                &times;
+              </button>
+
+              {/* Icon with glow */}
+              <div className="flex justify-center" style={{ marginBottom: '20px' }}>
                 <div
-                  className="w-16 h-16 flex items-center justify-center rounded-full"
+                  className="flex items-center justify-center rounded-full"
                   style={{
-                    background: `radial-gradient(circle, ${app.glowColor}25 0%, transparent 70%)`,
+                    width: '80px',
+                    height: '80px',
+                    background: `radial-gradient(circle, ${gc}30 0%, transparent 70%)`,
+                    animation: 'glowPulse 3s ease-in-out infinite',
                   }}
                 >
-                  {Icon && <Icon size={40} color={app.glowColor} />}
+                  {Icon && <Icon size={40} color={gc} />}
                 </div>
               </div>
 
               {/* App name */}
-              <h3 className="text-white text-lg font-medium text-center mb-1">
+              <h3
+                className="text-center"
+                style={{
+                  fontSize: '20px',
+                  fontWeight: 600,
+                  color: 'white',
+                  letterSpacing: '0.02em',
+                  marginBottom: '4px',
+                  textShadow: `0 0 20px ${gc}30`,
+                }}
+              >
                 {app.name}
               </h3>
 
               {/* Tagline */}
-              <p className="text-white/50 text-sm text-center mb-4">
+              <p
+                className="text-center"
+                style={{
+                  fontSize: '13px',
+                  fontWeight: 400,
+                  color: 'rgba(255, 255, 255, 0.4)',
+                  letterSpacing: '0.03em',
+                  textTransform: 'uppercase',
+                  marginBottom: '20px',
+                }}
+              >
                 {app.tagline}
               </p>
 
+              {/* Divider */}
+              <div
+                style={{
+                  width: '40px',
+                  height: '1px',
+                  background: `${gc}40`,
+                  margin: '0 auto 20px auto',
+                }}
+              />
+
               {/* Description */}
-              <p className="text-white/70 text-sm leading-relaxed mb-5">
+              <p
+                className="text-center"
+                style={{
+                  fontSize: '14px',
+                  lineHeight: 1.7,
+                  color: 'rgba(255, 255, 255, 0.6)',
+                  marginBottom: '24px',
+                }}
+              >
                 {app.description}
               </p>
 
               {/* Element badge */}
-              <div className="flex items-center gap-3 mb-5">
+              <div className="flex justify-center" style={{ marginBottom: '24px' }}>
                 <span
-                  className="text-xs px-3 py-1 rounded-full"
+                  className="inline-flex items-center"
                   style={{
-                    backgroundColor: `${app.glowColor}20`,
-                    color: app.glowColor,
+                    gap: '6px',
+                    fontSize: '12px',
+                    fontWeight: 500,
+                    letterSpacing: '0.05em',
+                    textTransform: 'uppercase',
+                    padding: '6px 14px',
+                    borderRadius: '100px',
+                    background: `${gc}15`,
+                    color: gc,
+                    border: `1px solid ${gc}20`,
                   }}
                 >
-                  {app.element}
+                  {elementEmoji[app.element] ?? ''} {app.element}
                 </span>
               </div>
 
@@ -102,17 +190,24 @@ export default function NodeModal({ app, onClose }: NodeModalProps) {
                 href={app.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full text-center py-3 px-6 rounded-xl text-sm font-medium tracking-wide transition-all duration-200"
+                className="block w-full text-center no-underline transition-all duration-200"
                 style={{
-                  backgroundColor: `${app.glowColor}18`,
-                  color: app.glowColor,
-                  border: `1px solid ${app.glowColor}30`,
+                  padding: '14px 24px',
+                  borderRadius: '14px',
+                  fontSize: '14px',
+                  fontWeight: 500,
+                  letterSpacing: '0.05em',
+                  background: `${gc}15`,
+                  color: gc,
+                  border: `1px solid ${gc}25`,
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = `${app.glowColor}30`
+                  e.currentTarget.style.background = `${gc}28`
+                  e.currentTarget.style.boxShadow = `0 0 20px ${gc}20`
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = `${app.glowColor}18`
+                  e.currentTarget.style.background = `${gc}15`
+                  e.currentTarget.style.boxShadow = 'none'
                 }}
               >
                 Open App &rarr;
