@@ -39,21 +39,22 @@ interface ConstellationNodeProps {
   isExpanded: boolean
   isMobile: boolean
   onToggle: (id: string) => void
+  onTap?: (app: AppNode) => void
 }
 
-export default function ConstellationNode({ app, isExpanded, isMobile, onToggle }: ConstellationNodeProps) {
+export default function ConstellationNode({ app, isExpanded, isMobile, onToggle, onTap }: ConstellationNodeProps) {
   const Icon = iconMap[app.id]
   const floatDuration = floatDurations[app.id] ?? 5
   const glowDelay = glowDelays[app.id] ?? 0
   const cardPosition = app.position.y > 60 ? 'above' as const : 'below' as const
 
   const handleClick = useCallback(() => {
-    onToggle(app.id)
-  }, [app.id, onToggle])
-
-  const handleClose = useCallback(() => {
-    onToggle(app.id)
-  }, [app.id, onToggle])
+    if (isMobile && onTap) {
+      onTap(app)
+    } else {
+      onToggle(app.id)
+    }
+  }, [app, isMobile, onTap, onToggle])
 
   return (
     <div
@@ -61,7 +62,7 @@ export default function ConstellationNode({ app, isExpanded, isMobile, onToggle 
       style={{ animation: `float ${floatDuration}s ease-in-out infinite` }}
       onClick={handleClick}
     >
-      {/* Glow ring — 120x120, centred behind 64x64 icon area */}
+      {/* Glow ring */}
       <div
         className="absolute rounded-full pointer-events-none"
         style={{
@@ -76,12 +77,12 @@ export default function ConstellationNode({ app, isExpanded, isMobile, onToggle 
         }}
       />
 
-      {/* Icon — coloured stroke */}
+      {/* Icon */}
       <div className="relative z-10 transition-transform duration-300 group-hover:scale-110">
         {Icon && <Icon size={48} color={app.glowColor} />}
       </div>
 
-      {/* Name — subtle glow text-shadow */}
+      {/* Name */}
       <span
         className="mt-2 text-sm font-medium text-white relative z-10"
         style={{ textShadow: `0 0 20px ${app.glowColor}40` }}
@@ -94,14 +95,10 @@ export default function ConstellationNode({ app, isExpanded, isMobile, onToggle 
         {app.tagline}
       </span>
 
-      {/* Expanded card */}
-      <NodeCard
-        app={app}
-        isOpen={isExpanded}
-        position={cardPosition}
-        isMobile={isMobile}
-        onClose={handleClose}
-      />
+      {/* Desktop-only inline card */}
+      {!isMobile && (
+        <NodeCard app={app} isOpen={isExpanded} position={cardPosition} />
+      )}
     </div>
   )
 }

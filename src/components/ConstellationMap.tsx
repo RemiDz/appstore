@@ -1,14 +1,18 @@
 'use client'
 
 import { useState, useCallback, useEffect } from 'react'
-import { apps } from '@/data/apps'
+import { apps, type AppNode } from '@/data/apps'
 import { computeConnections } from '@/lib/utils'
 import ConstellationNode from './ConstellationNode'
 import ConnectionLines from './ConnectionLines'
 
 const edges = computeConnections(apps)
 
-export default function ConstellationMap() {
+interface ConstellationMapProps {
+  onSelectApp?: (app: AppNode) => void
+}
+
+export default function ConstellationMap({ onSelectApp }: ConstellationMapProps) {
   const [expandedId, setExpandedId] = useState<string | null>(null)
   const [isMobile, setIsMobile] = useState(false)
 
@@ -50,16 +54,17 @@ export default function ConstellationMap() {
     )
   }
 
-  // Mobile: vertical stack with generous spacing
+  // Mobile: vertical stack — tap opens page-level modal
   return (
     <div className="flex flex-col items-center gap-16 pt-24 pb-32 px-6">
       {apps.map((app) => (
         <ConstellationNode
           key={app.id}
           app={app}
-          isExpanded={expandedId === app.id}
+          isExpanded={false}
           isMobile={true}
           onToggle={handleToggle}
+          onTap={onSelectApp}
         />
       ))}
     </div>

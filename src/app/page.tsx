@@ -1,8 +1,25 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+import type { AppNode } from '@/data/apps'
 import Starfield from '@/components/Starfield'
 import SacredGeometry from '@/components/SacredGeometry'
 import ConstellationMap from '@/components/ConstellationMap'
+import NodeModal from '@/components/NodeModal'
 
 export default function Home() {
+  const [selectedApp, setSelectedApp] = useState<AppNode | null>(null)
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (selectedApp) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => { document.body.style.overflow = '' }
+  }, [selectedApp])
+
   return (
     <main className="relative min-h-screen overflow-x-hidden" style={{ background: '#0a0a1a' }}>
       {/* Background layers */}
@@ -36,7 +53,7 @@ export default function Home() {
 
         {/* Constellation */}
         <div className="flex-1">
-          <ConstellationMap />
+          <ConstellationMap onSelectApp={setSelectedApp} />
         </div>
 
         {/* Footer */}
@@ -46,6 +63,9 @@ export default function Home() {
           </p>
         </footer>
       </div>
+
+      {/* Mobile modal — rendered at page root, outside content flow */}
+      <NodeModal app={selectedApp} onClose={() => setSelectedApp(null)} />
     </main>
   )
 }
