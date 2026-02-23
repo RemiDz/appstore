@@ -9,28 +9,18 @@ export interface AppNode {
   position: { x: number; y: number }
 }
 
+// Order: top-of-mobile-scroll first → bottom last
 export const apps: AppNode[] = [
   {
-    id: 'earth-pulse',
-    name: 'Earth Pulse',
-    tagline: 'Live Schumann Resonance Monitor',
+    id: 'overtone-singer',
+    name: 'Overtone Singer',
+    tagline: 'Real-Time Overtone Visualiser',
     description:
-      'Track Earth\u2019s electromagnetic heartbeat in real time. Monitor Schumann resonance amplitude, explore how planetary frequencies influence brainwave states, and align your practice with Earth\u2019s natural rhythms.',
-    url: 'https://shumann.app',
-    element: 'Earth',
-    glowColor: '#4ade80',
-    position: { x: 50, y: 75 },
-  },
-  {
-    id: 'lunar-practitioner',
-    name: 'Lunar Practitioner',
-    tagline: 'Moon-Guided Session Planner',
-    description:
-      'Plan your sound healing sessions with lunar intelligence. Real-time moon phase tracking, zodiac transits, and personalised guidance for aligning your practice with the lunar cycle.',
-    url: 'https://lunata.app',
-    element: 'Water',
-    glowColor: '#818cf8',
-    position: { x: 20, y: 55 },
+      'See your overtones as you sing them. A real-time frequency analyser designed specifically for overtone singing, showing fundamental and harmonic partials with precision visual feedback.',
+    url: 'https://overtonesinger.com',
+    element: 'Air',
+    glowColor: '#22d3ee',
+    position: { x: 72, y: 30 },
   },
   {
     id: 'sonarus',
@@ -41,18 +31,7 @@ export const apps: AppNode[] = [
     url: 'https://sonarus.app',
     element: 'Fire',
     glowColor: '#f97316',
-    position: { x: 80, y: 55 },
-  },
-  {
-    id: 'overtone-singer',
-    name: 'Overtone Singer',
-    tagline: 'Real-Time Overtone Visualiser',
-    description:
-      'See your overtones as you sing them. A real-time frequency analyser designed specifically for overtone singing, showing fundamental and harmonic partials with precision visual feedback.',
-    url: 'https://overtonesinger.com',
-    element: 'Air',
-    glowColor: '#22d3ee',
-    position: { x: 30, y: 25 },
+    position: { x: 28, y: 30 },
   },
   {
     id: 'nestorlab',
@@ -63,6 +42,28 @@ export const apps: AppNode[] = [
     url: 'https://nestorlab.app',
     element: 'Ether',
     glowColor: '#c084fc',
-    position: { x: 70, y: 25 },
+    position: { x: 78, y: 62 },
+  },
+  {
+    id: 'lunar-practitioner',
+    name: 'Lunar Practitioner',
+    tagline: 'Moon-Guided Session Planner',
+    description:
+      'Plan your sound healing sessions with lunar intelligence. Real-time moon phase tracking, zodiac transits, and personalised guidance for aligning your practice with the lunar cycle.',
+    url: 'https://lunata.app',
+    element: 'Water',
+    glowColor: '#818cf8',
+    position: { x: 22, y: 62 },
+  },
+  {
+    id: 'earth-pulse',
+    name: 'Earth Pulse',
+    tagline: 'Live Schumann Resonance Monitor',
+    description:
+      'Track Earth\u2019s electromagnetic heartbeat in real time. Monitor Schumann resonance amplitude, explore how planetary frequencies influence brainwave states, and align your practice with Earth\u2019s natural rhythms.',
+    url: 'https://shumann.app',
+    element: 'Earth',
+    glowColor: '#4ade80',
+    position: { x: 50, y: 82 },
   },
 ]
