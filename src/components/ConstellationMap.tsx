@@ -14,58 +14,37 @@ interface ConstellationMapProps {
 
 export default function ConstellationMap({ onSelectApp }: ConstellationMapProps) {
   const [expandedId, setExpandedId] = useState<string | null>(null)
-  const [isMobile, setIsMobile] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768)
-    check()
-    window.addEventListener('resize', check)
-    return () => window.removeEventListener('resize', check)
+    const timer = setTimeout(() => setMounted(true), 100)
+    return () => clearTimeout(timer)
   }, [])
 
   const handleToggle = useCallback((id: string) => {
     setExpandedId((prev) => (prev === id ? null : id))
   }, [])
 
-  // Desktop: absolute constellation layout
-  if (!isMobile) {
-    return (
-      <div className="relative w-full" style={{ height: 'calc(100vh - 200px)', minHeight: '500px' }}>
-        <ConnectionLines edges={edges} />
-        {apps.map((app) => (
-          <div
-            key={app.id}
-            className="absolute"
-            style={{
-              left: `${app.position.x}%`,
-              top: `${app.position.y}%`,
-              transform: 'translate(-50%, -50%)',
-            }}
-          >
-            <ConstellationNode
-              app={app}
-              isExpanded={expandedId === app.id}
-              isMobile={false}
-              onToggle={handleToggle}
-            />
-          </div>
-        ))}
-      </div>
-    )
-  }
-
-  // Mobile: vertical stack — tap opens page-level modal
+  // Single render path: mobile-first flex column, md: absolute constellation
   return (
-    <div className="flex flex-col items-center gap-16 pt-24 pb-32 px-6">
+    <div className="relative flex flex-col items-center gap-14 pt-24 pb-32 px-6 md:block md:pt-0 md:pb-0 md:px-0" style={{ minHeight: '500px' }}>
+      <ConnectionLines edges={edges} />
       {apps.map((app) => (
-        <ConstellationNode
+        <div
           key={app.id}
-          app={app}
-          isExpanded={false}
-          isMobile={true}
-          onToggle={handleToggle}
-          onTap={onSelectApp}
-        />
+          className={`relative md:absolute constellation-node transition-opacity duration-500 ${mounted ? 'opacity-100' : 'opacity-0'}`}
+          style={{
+            '--node-x': `${app.position.x}%`,
+            '--node-y': `${app.position.y}%`,
+          } as React.CSSProperties}
+        >
+          <ConstellationNode
+            app={app}
+            isExpanded={expandedId === app.id}
+            onToggle={handleToggle}
+            onTap={onSelectApp}
+          />
+        </div>
       ))}
     </div>
   )

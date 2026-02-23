@@ -37,24 +37,24 @@ const glowDelays: Record<string, number> = {
 interface ConstellationNodeProps {
   app: AppNode
   isExpanded: boolean
-  isMobile: boolean
   onToggle: (id: string) => void
   onTap?: (app: AppNode) => void
 }
 
-export default function ConstellationNode({ app, isExpanded, isMobile, onToggle, onTap }: ConstellationNodeProps) {
+export default function ConstellationNode({ app, isExpanded, onToggle, onTap }: ConstellationNodeProps) {
   const Icon = iconMap[app.id]
   const floatDuration = floatDurations[app.id] ?? 5
   const glowDelay = glowDelays[app.id] ?? 0
   const cardPosition = app.position.y > 60 ? 'above' as const : 'below' as const
 
   const handleClick = useCallback(() => {
-    if (isMobile && onTap) {
+    // On mobile (<768px), open page-level modal; on desktop, toggle inline card
+    if (window.innerWidth < 768 && onTap) {
       onTap(app)
     } else {
       onToggle(app.id)
     }
-  }, [app, isMobile, onTap, onToggle])
+  }, [app, onTap, onToggle])
 
   return (
     <div
@@ -95,10 +95,10 @@ export default function ConstellationNode({ app, isExpanded, isMobile, onToggle,
         {app.tagline}
       </span>
 
-      {/* Desktop-only inline card */}
-      {!isMobile && (
+      {/* Desktop-only inline card (hidden on mobile via CSS) */}
+      <div className="hidden md:block">
         <NodeCard app={app} isOpen={isExpanded} position={cardPosition} />
-      )}
+      </div>
     </div>
   )
 }
