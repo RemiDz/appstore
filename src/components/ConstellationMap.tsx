@@ -27,7 +27,7 @@ export default function ConstellationMap({ onSelectApp }: ConstellationMapProps)
 
   // Single render path: mobile-first flex column, md: absolute constellation
   return (
-    <div className="relative flex flex-col items-center gap-14 pt-24 pb-32 px-6 md:block md:pt-0 md:pb-0 md:px-0" style={{ minHeight: '500px' }}>
+    <div className="relative flex flex-col items-center gap-10 pb-32 px-6 md:block md:pt-0 md:pb-0 md:px-0" style={{ minHeight: '500px' }}>
       <ConnectionLines edges={edges} />
       {apps.map((app) => (
         <div
