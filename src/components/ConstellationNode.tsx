@@ -10,7 +10,7 @@ import SonarusIcon from './icons/SonarusIcon'
 import OvertoneIcon from './icons/OvertoneIcon'
 import NestorLabIcon from './icons/NestorLabIcon'
 
-const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string; color?: string }>> = {
   'earth-pulse': EarthPulseIcon,
   'lunar-practitioner': LunarIcon,
   'sonarus': SonarusIcon,
@@ -18,56 +18,74 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; className?: s
   'nestorlab': NestorLabIcon,
 }
 
-// Staggered float durations per node for organic feel
 const floatDurations: Record<string, number> = {
-  'earth-pulse': 6,
-  'lunar-practitioner': 7,
-  'sonarus': 5.5,
-  'overtone-singer': 8,
-  'nestorlab': 6.5,
+  'earth-pulse': 5,
+  'lunar-practitioner': 6,
+  'sonarus': 4.5,
+  'overtone-singer': 5.5,
+  'nestorlab': 7,
+}
+
+const glowDelays: Record<string, number> = {
+  'earth-pulse': 0,
+  'lunar-practitioner': 0.8,
+  'sonarus': 1.6,
+  'overtone-singer': 2.4,
+  'nestorlab': 3.2,
 }
 
 interface ConstellationNodeProps {
   app: AppNode
   isExpanded: boolean
+  isMobile: boolean
   onToggle: (id: string) => void
 }
 
-export default function ConstellationNode({ app, isExpanded, onToggle }: ConstellationNodeProps) {
+export default function ConstellationNode({ app, isExpanded, isMobile, onToggle }: ConstellationNodeProps) {
   const Icon = iconMap[app.id]
-  const floatDuration = floatDurations[app.id] ?? 6
+  const floatDuration = floatDurations[app.id] ?? 5
+  const glowDelay = glowDelays[app.id] ?? 0
   const cardPosition = app.position.y > 60 ? 'above' as const : 'below' as const
 
   const handleClick = useCallback(() => {
     onToggle(app.id)
   }, [app.id, onToggle])
 
+  const handleClose = useCallback(() => {
+    onToggle(app.id)
+  }, [app.id, onToggle])
+
   return (
     <div
-      className="relative flex flex-col items-center cursor-pointer group"
+      className="relative flex flex-col items-center cursor-pointer group py-4"
       style={{ animation: `float ${floatDuration}s ease-in-out infinite` }}
       onClick={handleClick}
     >
-      {/* Glow ring */}
+      {/* Glow ring — 120x120, centred behind 64x64 icon area */}
       <div
-        className="absolute w-20 h-20 rounded-full"
+        className="absolute rounded-full pointer-events-none"
         style={{
-          background: `radial-gradient(circle, ${app.glowColor}33, transparent 70%)`,
-          animation: 'glowPulse 4s ease-in-out infinite',
+          width: '120px',
+          height: '120px',
+          background: `radial-gradient(circle, ${app.glowColor}33 0%, transparent 70%)`,
+          animation: `glowPulse 4s ease-in-out ${glowDelay}s infinite`,
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          marginTop: '-10px',
+          marginTop: '-16px',
         }}
       />
 
-      {/* Icon */}
+      {/* Icon — coloured stroke */}
       <div className="relative z-10 transition-transform duration-300 group-hover:scale-110">
-        {Icon && <Icon size={48} />}
+        {Icon && <Icon size={48} color={app.glowColor} />}
       </div>
 
-      {/* Name */}
-      <span className="mt-2 text-sm font-medium text-white relative z-10">
+      {/* Name — subtle glow text-shadow */}
+      <span
+        className="mt-2 text-sm font-medium text-white relative z-10"
+        style={{ textShadow: `0 0 20px ${app.glowColor}40` }}
+      >
         {app.name}
       </span>
 
@@ -77,7 +95,13 @@ export default function ConstellationNode({ app, isExpanded, onToggle }: Constel
       </span>
 
       {/* Expanded card */}
-      <NodeCard app={app} isOpen={isExpanded} position={cardPosition} />
+      <NodeCard
+        app={app}
+        isOpen={isExpanded}
+        position={cardPosition}
+        isMobile={isMobile}
+        onClose={handleClose}
+      />
     </div>
   )
 }

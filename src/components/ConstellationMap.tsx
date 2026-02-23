@@ -41,6 +41,7 @@ export default function ConstellationMap() {
             <ConstellationNode
               app={app}
               isExpanded={expandedId === app.id}
+              isMobile={false}
               onToggle={handleToggle}
             />
           </div>
@@ -49,14 +50,15 @@ export default function ConstellationMap() {
     )
   }
 
-  // Mobile: vertical stack
+  // Mobile: vertical stack with generous spacing
   return (
-    <div className="flex flex-col items-center gap-10 py-8 px-4">
+    <div className="flex flex-col items-center gap-16 pt-24 pb-32 px-6">
       {apps.map((app) => (
         <ConstellationNode
           key={app.id}
           app={app}
           isExpanded={expandedId === app.id}
+          isMobile={true}
           onToggle={handleToggle}
         />
       ))}

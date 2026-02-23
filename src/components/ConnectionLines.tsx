@@ -15,7 +15,6 @@ export default function ConnectionLines({ edges }: ConnectionLinesProps) {
       {edges.map((edge) => {
         const mx = (edge.fromPos.x + edge.toPos.x) / 2
         const my = (edge.fromPos.y + edge.toPos.y) / 2
-        // Offset control point perpendicular to the line for a slight curve
         const dx = edge.toPos.x - edge.fromPos.x
         const dy = edge.toPos.y - edge.fromPos.y
         const len = Math.hypot(dx, dy)
@@ -28,8 +27,8 @@ export default function ConnectionLines({ edges }: ConnectionLinesProps) {
             d={`M ${edge.fromPos.x} ${edge.fromPos.y} Q ${mx + offsetX} ${my + offsetY}, ${edge.toPos.x} ${edge.toPos.y}`}
             fill="none"
             stroke="white"
-            strokeOpacity={0.08}
-            strokeWidth={0.15}
+            strokeOpacity={0.06}
+            strokeWidth={0.2}
             strokeDasharray="0.8 0.6"
             style={{ animation: 'dashFlow 4s linear infinite' }}
           />

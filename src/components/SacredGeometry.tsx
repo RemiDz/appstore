@@ -1,10 +1,9 @@
-const R = 40 // radius for outer circles
+const R = 40
 const CX = 50
 const CY = 50
 
-// Flower of Life: centre circle + 6 surrounding circles
 const circles = [
-  { cx: CX, cy: CY }, // Centre
+  { cx: CX, cy: CY },
   ...Array.from({ length: 6 }, (_, i) => {
     const angle = (i * 60 * Math.PI) / 180
     return {
@@ -17,14 +16,16 @@ const circles = [
 export default function SacredGeometry() {
   return (
     <div
-      className="fixed inset-0 flex items-center justify-center pointer-events-none"
+      className="fixed inset-0 flex items-center justify-center pointer-events-none overflow-hidden"
       style={{ zIndex: 0 }}
     >
       <svg
         viewBox="-10 -10 120 120"
-        className="w-[600px] h-[600px] max-w-[90vw] max-h-[90vh]"
+        className="opacity-[0.04] md:opacity-[0.06]"
         style={{
-          opacity: 0.04,
+          width: '140vw',
+          height: '140vw',
+          maxWidth: 'none',
           animation: 'geometryRotate 120s linear infinite',
         }}
       >
