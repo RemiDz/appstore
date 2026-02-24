@@ -62,7 +62,7 @@ export default function ConstellationNode({ app, isExpanded, onToggle, onTap }: 
 
   return (
     <div
-      className="relative flex flex-col items-center cursor-pointer group py-4"
+      className="relative flex flex-col items-center cursor-pointer group py-1"
       style={{ animation: `float ${floatDuration}s ease-in-out infinite` }}
       onClick={handleClick}
     >
@@ -70,25 +70,25 @@ export default function ConstellationNode({ app, isExpanded, onToggle, onTap }: 
       <div
         className="absolute rounded-full pointer-events-none"
         style={{
-          width: '120px',
-          height: '120px',
+          width: '90px',
+          height: '90px',
           background: `radial-gradient(circle, ${app.glowColor}33 0%, transparent 70%)`,
           animation: `glowPulse 4s ease-in-out ${glowDelay}s infinite`,
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          marginTop: '-16px',
+          marginTop: '-12px',
         }}
       />
 
       {/* Icon */}
       <div className="relative z-10 transition-transform duration-300 group-hover:scale-110">
-        {Icon && <Icon size={48} color={app.glowColor} />}
+        {Icon && <Icon size={36} color={app.glowColor} />}
       </div>
 
       {/* Name */}
       <span
-        className="mt-2 text-sm font-medium text-white relative z-10"
+        className="mt-1 text-sm font-medium text-white relative z-10"
         style={{ textShadow: `0 0 20px ${app.glowColor}40` }}
       >
         {app.name}

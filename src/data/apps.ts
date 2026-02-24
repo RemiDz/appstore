@@ -56,17 +56,6 @@ export const apps: AppNode[] = [
     position: { x: 22, y: 62 },
   },
   {
-    id: 'earth-pulse',
-    name: 'Earth Pulse',
-    tagline: 'Live Schumann Resonance Monitor',
-    description:
-      'Track Earth\u2019s electromagnetic heartbeat in real time. Monitor Schumann resonance amplitude, explore how planetary frequencies influence brainwave states, and align your practice with Earth\u2019s natural rhythms.',
-    url: 'https://shumann.app',
-    element: 'Earth',
-    glowColor: '#4ade80',
-    position: { x: 50, y: 82 },
-  },
-  {
     id: 'tidara',
     name: 'Tidara',
     tagline: 'Live Tidal Intelligence',
@@ -75,6 +64,17 @@ export const apps: AppNode[] = [
     url: 'https://tidara.app',
     element: 'Water',
     glowColor: '#4fc3f7',
+    position: { x: 50, y: 82 },
+  },
+  {
+    id: 'earth-pulse',
+    name: 'Earth Pulse',
+    tagline: 'Live Schumann Resonance Monitor',
+    description:
+      'Track Earth\u2019s electromagnetic heartbeat in real time. Monitor Schumann resonance amplitude, explore how planetary frequencies influence brainwave states, and align your practice with Earth\u2019s natural rhythms.',
+    url: 'https://shumann.app',
+    element: 'Earth',
+    glowColor: '#4ade80',
     position: { x: 50, y: 95 },
   },
 ]

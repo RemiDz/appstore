@@ -42,7 +42,7 @@ export default function Home() {
       {/* Content */}
       <div className="relative z-10 flex flex-col min-h-screen">
         {/* Header */}
-        <header className="text-center" style={{ paddingTop: 'calc(env(safe-area-inset-top, 0px) + 3rem)', paddingBottom: '16px' }}>
+        <header className="text-center" style={{ paddingTop: 'calc(env(safe-area-inset-top, 0px) + 1rem)', paddingBottom: '8px' }}>
           <h1
             className="font-mono mb-1.5"
             style={{ fontSize: '13px', fontWeight: 300, letterSpacing: '0.35em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)' }}
@@ -50,7 +50,7 @@ export default function Home() {
             Harmonic Waves
           </h1>
           <p
-            className="font-display mb-4"
+            className="font-display mb-2"
             style={{ fontSize: '14px', fontStyle: 'italic', fontWeight: 300, color: '#c9a84c', opacity: 0.7 }}
           >
             Tools for Sound Healers
@@ -68,7 +68,7 @@ export default function Home() {
         </div>
 
         {/* Footer */}
-        <footer className="py-6 text-center">
+        <footer className="py-3 text-center">
           <p className="text-xs text-white/15">
             Created by Remigijus Dzingelevi&#269;ius
           </p>
