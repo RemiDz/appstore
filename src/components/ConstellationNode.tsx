@@ -9,6 +9,7 @@ import LunarIcon from './icons/LunarIcon'
 import SonarusIcon from './icons/SonarusIcon'
 import OvertoneIcon from './icons/OvertoneIcon'
 import NestorLabIcon from './icons/NestorLabIcon'
+import TidaraIcon from './icons/TidaraIcon'
 
 const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string; color?: string }>> = {
   'earth-pulse': EarthPulseIcon,
@@ -16,6 +17,7 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; className?: s
   'sonarus': SonarusIcon,
   'overtone-singer': OvertoneIcon,
   'nestorlab': NestorLabIcon,
+  'tidara': TidaraIcon,
 }
 
 const floatDurations: Record<string, number> = {
@@ -24,6 +26,7 @@ const floatDurations: Record<string, number> = {
   'sonarus': 4.5,
   'overtone-singer': 5.5,
   'nestorlab': 7,
+  'tidara': 5.8,
 }
 
 const glowDelays: Record<string, number> = {
@@ -32,6 +35,7 @@ const glowDelays: Record<string, number> = {
   'sonarus': 1.6,
   'overtone-singer': 2.4,
   'nestorlab': 3.2,
+  'tidara': 4.0,
 }
 
 interface ConstellationNodeProps {

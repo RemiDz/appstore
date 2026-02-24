@@ -66,4 +66,15 @@ export const apps: AppNode[] = [
     glowColor: '#4ade80',
     position: { x: 50, y: 82 },
   },
+  {
+    id: 'tidara',
+    name: 'Tidara',
+    tagline: 'Live Tidal Intelligence',
+    description:
+      'Track ocean tides with precision intelligence. Real-time tidal data, lunar-driven forecasts, and coastal insights for surfers, sailors, and sea lovers aligned with the rhythm of the waters.',
+    url: 'https://tidara.app',
+    element: 'Water',
+    glowColor: '#4fc3f7',
+    position: { x: 50, y: 95 },
+  },
 ]
