@@ -21,7 +21,7 @@ export default function Home() {
   }, [selectedApp])
 
   return (
-    <main className="relative min-h-screen overflow-x-hidden" style={{ background: '#0a0a1a' }}>
+    <main className="relative overflow-x-hidden" style={{ background: '#0a0a1a', minHeight: '100dvh' }}>
       {/* Background layers */}
       <Starfield />
       <SacredGeometry />
@@ -40,7 +40,7 @@ export default function Home() {
       />
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col min-h-screen">
+      <div className="relative z-10 flex flex-col" style={{ minHeight: '100dvh' }}>
         {/* Header */}
         <header className="text-center" style={{ paddingTop: 'calc(env(safe-area-inset-top, 0px) + 1rem)', paddingBottom: '8px' }}>
           <h1
@@ -63,9 +63,7 @@ export default function Home() {
         </header>
 
         {/* Constellation */}
-        <div className="flex-1">
-          <ConstellationMap onSelectApp={setSelectedApp} />
-        </div>
+        <ConstellationMap onSelectApp={setSelectedApp} />
 
         {/* Footer */}
         <footer className="py-3 text-center">

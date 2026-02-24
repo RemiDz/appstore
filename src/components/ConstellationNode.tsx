@@ -62,7 +62,7 @@ export default function ConstellationNode({ app, isExpanded, onToggle, onTap }: 
 
   return (
     <div
-      className="relative flex flex-col items-center cursor-pointer group py-1"
+      className="relative flex flex-col items-center cursor-pointer group"
       style={{ animation: `float ${floatDuration}s ease-in-out infinite` }}
       onClick={handleClick}
     >
