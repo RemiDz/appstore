@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import { Cormorant_Garamond, Lato, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 
@@ -37,6 +38,13 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${cormorant.variable} ${lato.variable} ${jetbrains.variable}`}>
+      <head>
+        {/* Privacy-friendly analytics by Plausible */}
+        <Script async src="https://plausible.io/js/pa-ZqKyEhbiJfRrJm3EgzV3w.js" strategy="afterInteractive" />
+        <Script id="plausible-init" strategy="afterInteractive">
+          {`window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()`}
+        </Script>
+      </head>
       <body>{children}</body>
     </html>
   )
