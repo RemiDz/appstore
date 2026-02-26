@@ -1,0 +1,44 @@
+{
+  "name": "Harmonic Waves",
+  "short_name": "Harmonic Waves",
+  "description": "Tools for Sound Healers — 7 free apps for frequency work, brainwave entrainment, vocal analysis, and moon-guided practice.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080414",
+  "theme_color": "#080414",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icons/icon-48x48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-64x64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
