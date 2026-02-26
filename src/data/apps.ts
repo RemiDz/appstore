@@ -34,6 +34,17 @@ export const apps: AppNode[] = [
     position: { x: 72, y: 30 },
   },
   {
+    id: 'binara',
+    name: 'Binara',
+    tagline: 'Tune Your Brainwaves',
+    description:
+      'Pure binaural beats and brainwave entrainment. Choose your target state — focus, sleep, meditation, creativity — and let precise stereo frequencies guide your brain into resonance. Headphones required.',
+    url: 'https://binara.app',
+    element: 'Ether',
+    glowColor: '#a78bfa',
+    position: { x: 75, y: 46 },
+  },
+  {
     id: 'sonarus',
     name: 'Sonarus',
     tagline: 'Vocal Biomarker Analysis',
@@ -65,17 +76,6 @@ export const apps: AppNode[] = [
     element: 'Water',
     glowColor: '#4fc3f7',
     position: { x: 50, y: 82 },
-  },
-  {
-    id: 'binara',
-    name: 'Binara',
-    tagline: 'Tune Your Brainwaves',
-    description:
-      'Pure binaural beats and brainwave entrainment. Choose your target state — focus, sleep, meditation, creativity — and let precise stereo frequencies guide your brain into resonance. Headphones required.',
-    url: 'https://binara.app',
-    element: 'Water',
-    glowColor: '#38B2CC',
-    position: { x: 50, y: 12 },
   },
   {
     id: 'earth-pulse',
