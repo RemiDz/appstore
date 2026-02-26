@@ -8,6 +8,7 @@ import FlagshipCard from '@/components/FlagshipCard'
 import AppCard from '@/components/AppCard'
 import AppOverlay from '@/components/AppOverlay'
 import InstallButton from '@/components/InstallButton'
+import HarmonicLogo from '@/components/HarmonicLogo'
 
 export default function Home() {
   const [phase, setPhase] = useState(0)
@@ -109,6 +110,16 @@ export default function Home() {
           transition: 'opacity 0.6s ease 0.3s',
         }}>
           <InstallButton />
+        </div>
+
+        {/* Animated logo — between header and apps */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          position: 'relative',
+          zIndex: 10,
+        }}>
+          <HarmonicLogo size={160} />
         </div>
 
         {/* App Area */}
