@@ -47,15 +47,24 @@ export default function AppIcon({ id, size = 48, color = 'white' }: AppIconProps
     case 'overtone-singer':
       return (
         <svg {...common} viewBox="0 0 48 48" fill="none">
-          {/* Lucide MicVocal icon scaled to 48x48 */}
-          <g transform="translate(4, 4) scale(1.65)" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="m11 7.601-5.994 8.19a1 1 0 0 0 .1 1.298l.817.818a1 1 0 0 0 1.314.087L15.09 12" />
-            <path d="M16.5 21.174C15.5 20.5 14.372 20 13 20c-2.058 0-3.928 2.356-6 2-2.072-.356-2.775-3.369-1.5-4.5" />
-            <circle cx="16" cy="7" r="5" />
-          </g>
-          {/* Harmonic wave arcs */}
-          <path d="M34 18 Q38 24, 34 30" stroke={color} strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />
-          <path d="M38 15 Q44 24, 38 33" stroke={color} strokeWidth="1.2" strokeLinecap="round" opacity="0.25" />
+          {/* Harmonic partials — spectrogram of overtone singing */}
+          {/* Fundamental — strongest, widest */}
+          <path d="M8 42 L40 42" stroke={color} strokeWidth="3" strokeLinecap="round" opacity="1" />
+          {/* 2nd harmonic */}
+          <path d="M10 35 L38 35" stroke={color} strokeWidth="2.5" strokeLinecap="round" opacity="0.75" />
+          {/* 3rd harmonic */}
+          <path d="M13 28 L35 28" stroke={color} strokeWidth="2.2" strokeLinecap="round" opacity="0.55" />
+          {/* 4th harmonic */}
+          <path d="M16 22 L32 22" stroke={color} strokeWidth="1.8" strokeLinecap="round" opacity="0.38" />
+          {/* 5th harmonic */}
+          <path d="M19 16 L29 16" stroke={color} strokeWidth="1.5" strokeLinecap="round" opacity="0.24" />
+          {/* 6th harmonic — faintest, shortest */}
+          <path d="M21 11 L27 11" stroke={color} strokeWidth="1.2" strokeLinecap="round" opacity="0.14" />
+          {/* Subtle resonance glow */}
+          <circle cx="24" cy="28" r="4" fill={color} opacity="0.06">
+            <animate attributeName="r" values="3;6;3" dur="3s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.08;0.02;0.08" dur="3s" repeatCount="indefinite" />
+          </circle>
         </svg>
       )
 
