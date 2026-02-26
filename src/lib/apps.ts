@@ -66,7 +66,7 @@ export const apps: App[] = [
   },
   {
     id: 'lunar',
-    name: 'Lunar App',
+    name: 'Lunata',
     tagline: 'Moon-Guided Session Planner',
     description: 'Moon intelligence for sound healing sessions and ceremony planning. Live lunar data with phase-specific guidance.',
     url: 'https://lunata.app',
