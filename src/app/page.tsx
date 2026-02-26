@@ -55,6 +55,12 @@ export default function Home() {
           >
             Tools for Sound Healers
           </p>
+          <p
+            className="font-mono mb-2"
+            style={{ fontSize: '12px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)' }}
+          >
+            Seven tools &middot; Five elements &middot; Zero friction
+          </p>
           <div className="flex items-center justify-center gap-3">
             <div className="w-12 h-px bg-white/10" />
             <span className="text-white/20 text-xs">&#10022;</span>
@@ -69,6 +75,16 @@ export default function Home() {
         <footer className="py-3 text-center">
           <p className="text-xs text-white/15">
             Created by Remigijus Dzingelevi&#269;ius
+          </p>
+          <p
+            style={{
+              fontSize: '11px',
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase',
+              color: 'rgba(255,255,255,0.15)',
+            }}
+          >
+            Sound Healer &amp; Developer
           </p>
         </footer>
       </div>

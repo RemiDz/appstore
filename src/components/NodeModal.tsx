@@ -168,8 +168,8 @@ export default function NodeModal({ app, onClose }: NodeModalProps) {
                 {app.description}
               </p>
 
-              {/* Element badge */}
-              <div className="flex justify-center" style={{ marginBottom: '24px' }}>
+              {/* Element badge + pricing */}
+              <div className="flex justify-center flex-wrap gap-2" style={{ marginBottom: '24px' }}>
                 <span
                   className="inline-flex items-center"
                   style={{
@@ -187,6 +187,23 @@ export default function NodeModal({ app, onClose }: NodeModalProps) {
                 >
                   {elementEmoji[app.element] ?? ''} {app.element}
                 </span>
+                {app.pricing === 'pro' && app.priceLabel && (
+                  <span
+                    className="inline-flex items-center"
+                    style={{
+                      fontSize: '11px',
+                      fontWeight: 500,
+                      letterSpacing: '0.05em',
+                      padding: '6px 14px',
+                      borderRadius: '100px',
+                      background: `${gc}15`,
+                      color: gc,
+                      border: `1px solid ${gc}20`,
+                    }}
+                  >
+                    {app.priceLabel}
+                  </span>
+                )}
               </div>
 
               {/* Open App button */}

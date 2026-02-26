@@ -27,6 +27,7 @@ export default function SacredGeometry() {
           height: '140vw',
           maxWidth: 'none',
           animation: 'geometryRotate 120s linear infinite',
+          willChange: 'transform',
         }}
       >
         {circles.map((c, i) => (

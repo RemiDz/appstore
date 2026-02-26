@@ -6,6 +6,8 @@ export interface AppNode {
   url: string
   element: string
   glowColor: string
+  pricing: 'free' | 'pro'
+  priceLabel?: string
   position: { x: number; y: number }
 }
 
@@ -20,6 +22,7 @@ export const apps: AppNode[] = [
     url: 'https://nestorlab.app',
     element: 'Ether',
     glowColor: '#c084fc',
+    pricing: 'free',
     position: { x: 78, y: 62 },
   },
   {
@@ -31,6 +34,7 @@ export const apps: AppNode[] = [
     url: 'https://binara.app',
     element: 'Ether',
     glowColor: '#a78bfa',
+    pricing: 'free',
     position: { x: 75, y: 46 },
   },
   {
@@ -42,6 +46,8 @@ export const apps: AppNode[] = [
     url: 'https://overtonesinger.com',
     element: 'Air',
     glowColor: '#22d3ee',
+    pricing: 'pro',
+    priceLabel: 'Pro \u00B7 $6.99',
     position: { x: 72, y: 30 },
   },
   {
@@ -53,6 +59,7 @@ export const apps: AppNode[] = [
     url: 'https://sonarus.app',
     element: 'Fire',
     glowColor: '#f97316',
+    pricing: 'free',
     position: { x: 28, y: 30 },
   },
   {
@@ -64,6 +71,7 @@ export const apps: AppNode[] = [
     url: 'https://lunata.app',
     element: 'Water',
     glowColor: '#818cf8',
+    pricing: 'free',
     position: { x: 22, y: 62 },
   },
   {
@@ -75,6 +83,7 @@ export const apps: AppNode[] = [
     url: 'https://tidara.app',
     element: 'Water',
     glowColor: '#4fc3f7',
+    pricing: 'free',
     position: { x: 50, y: 82 },
   },
   {
@@ -86,6 +95,7 @@ export const apps: AppNode[] = [
     url: 'https://shumann.app',
     element: 'Earth',
     glowColor: '#4ade80',
+    pricing: 'free',
     position: { x: 50, y: 95 },
   },
 ]

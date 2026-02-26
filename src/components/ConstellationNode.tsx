@@ -12,6 +12,14 @@ import NestoriumIcon from './icons/NestoriumIcon'
 import TidaraIcon from './icons/TidaraIcon'
 import BinaraIcon from './icons/BinaraIcon'
 
+const elementEmoji: Record<string, string> = {
+  Earth: '\u{1F30D}',
+  Water: '\u{1F30A}',
+  Fire: '\u{1F525}',
+  Air: '\u{1F32C}\uFE0F',
+  Ether: '\u2728',
+}
+
 const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string; color?: string }>> = {
   'earth-pulse': EarthPulseIcon,
   'lunar-practitioner': LunarIcon,
@@ -78,10 +86,10 @@ export default function ConstellationNode({ app, isExpanded, onToggle, onTap }: 
           height: '90px',
           background: `radial-gradient(circle, ${app.glowColor}33 0%, transparent 70%)`,
           animation: `glowPulse 4s ease-in-out ${glowDelay}s infinite`,
-          top: '50%',
+          top: '0',
           left: '50%',
-          transform: 'translate(-50%, -50%)',
-          marginTop: '-12px',
+          marginTop: '-27px',
+          willChange: 'transform, opacity',
         }}
       />
 
@@ -101,6 +109,45 @@ export default function ConstellationNode({ app, isExpanded, onToggle, onTap }: 
       {/* Tagline */}
       <span className="text-xs text-[#a0a0b8] relative z-10 text-center max-w-[180px]">
         {app.tagline}
+      </span>
+
+      {/* Element label */}
+      <span
+        className="relative z-10 mt-1"
+        style={{
+          fontSize: '11px',
+          letterSpacing: '0.15em',
+          textTransform: 'uppercase',
+          color: app.glowColor,
+          opacity: 0.4,
+        }}
+      >
+        {elementEmoji[app.element] ?? ''} {app.element}
+      </span>
+
+      {/* Pro badge (only for paid apps) */}
+      {app.pricing === 'pro' && app.priceLabel && (
+        <span
+          className="relative z-10 mt-1"
+          style={{
+            fontSize: '10px',
+            letterSpacing: '0.1em',
+            padding: '2px 8px',
+            borderRadius: '9999px',
+            background: `${app.glowColor}20`,
+            color: app.glowColor,
+          }}
+        >
+          {app.priceLabel}
+        </span>
+      )}
+
+      {/* Open cue */}
+      <span
+        className="relative z-10 mt-1 transition-opacity duration-200 group-hover:opacity-60"
+        style={{ fontSize: '11px', color: 'white', opacity: 0.25 }}
+      >
+        Open &rarr;
       </span>
 
       {/* Desktop-only inline card (hidden on mobile via CSS) */}
