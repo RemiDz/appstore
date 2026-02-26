@@ -46,25 +46,10 @@ export default function AppIcon({ id, size = 48, color = 'white' }: AppIconProps
 
     case 'overtone-singer':
       return (
-        <svg {...common} viewBox="0 0 48 48" fill="none">
-          {/* Harmonic partials — spectrogram of overtone singing */}
-          {/* Fundamental — strongest, widest */}
-          <path d="M8 42 L40 42" stroke={color} strokeWidth="3" strokeLinecap="round" opacity="1" />
-          {/* 2nd harmonic */}
-          <path d="M10 35 L38 35" stroke={color} strokeWidth="2.5" strokeLinecap="round" opacity="0.75" />
-          {/* 3rd harmonic */}
-          <path d="M13 28 L35 28" stroke={color} strokeWidth="2.2" strokeLinecap="round" opacity="0.55" />
-          {/* 4th harmonic */}
-          <path d="M16 22 L32 22" stroke={color} strokeWidth="1.8" strokeLinecap="round" opacity="0.38" />
-          {/* 5th harmonic */}
-          <path d="M19 16 L29 16" stroke={color} strokeWidth="1.5" strokeLinecap="round" opacity="0.24" />
-          {/* 6th harmonic — faintest, shortest */}
-          <path d="M21 11 L27 11" stroke={color} strokeWidth="1.2" strokeLinecap="round" opacity="0.14" />
-          {/* Subtle resonance glow */}
-          <circle cx="24" cy="28" r="4" fill={color} opacity="0.06">
-            <animate attributeName="r" values="3;6;3" dur="3s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.08;0.02;0.08" dur="3s" repeatCount="indefinite" />
-          </circle>
+        <svg {...common} viewBox="0 0 24 24">
+          {/* Google Material record_voice_over — side profile head with sound waves */}
+          <circle cx="9" cy="9" r="4" fill={color} />
+          <path fill={color} d="M9 15c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4m7.76-9.64l-1.68 1.69c.84 1.18.84 2.71 0 3.89l1.68 1.69c2.02-2.02 2.02-5.07 0-7.27M20.07 2l-1.63 1.63c2.77 3.02 2.77 7.56 0 10.74L20.07 16c3.9-3.89 3.91-9.95 0-14" />
         </svg>
       )
 
