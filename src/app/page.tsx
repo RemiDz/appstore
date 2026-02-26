@@ -108,7 +108,7 @@ export default function Home() {
           marginTop: 'clamp(12px, 2.5vh, 24px)',
           marginBottom: 'clamp(4px, 1vh, 10px)',
         }}>
-          <HarmonicLogo size={160} />
+          <HarmonicLogo size={200} />
         </div>
 
         {/* App Area */}
