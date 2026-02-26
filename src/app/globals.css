@@ -177,6 +177,11 @@ html, body {
   to   { opacity: 1; }
 }
 
+@keyframes iosSlideUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
 /* ── Reduced Motion ────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

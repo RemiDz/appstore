@@ -7,6 +7,7 @@ import AuroraCanvas from '@/components/AuroraCanvas'
 import FlagshipCard from '@/components/FlagshipCard'
 import AppCard from '@/components/AppCard'
 import AppOverlay from '@/components/AppOverlay'
+import InstallButton from '@/components/InstallButton'
 
 export default function Home() {
   const [phase, setPhase] = useState(0)
@@ -17,6 +18,12 @@ export default function Home() {
     const t2 = setTimeout(() => setPhase(2), 700)
     const t3 = setTimeout(() => setPhase(3), 1800)
     return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3) }
+  }, [])
+
+  useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch(() => {})
+    }
   }, [])
 
   useEffect(() => {
@@ -90,6 +97,19 @@ export default function Home() {
             <div className="w-10 h-px" style={{ background: 'rgba(255,255,255,0.1)' }} />
           </div>
         </header>
+
+        {/* Install button */}
+        <div style={{
+          position: 'relative',
+          zIndex: 10,
+          display: 'flex',
+          justifyContent: 'center',
+          marginTop: 'clamp(8px, 2vh, 14px)',
+          opacity: phase >= 1 ? 1 : 0,
+          transition: 'opacity 0.6s ease 0.3s',
+        }}>
+          <InstallButton />
+        </div>
 
         {/* App Area */}
         <div className="flex-1 flex flex-col justify-center" style={{ gap: '2.5vh' }}>
