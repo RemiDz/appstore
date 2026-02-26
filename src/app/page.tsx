@@ -13,6 +13,11 @@ import HarmonicLogo from '@/components/HarmonicLogo'
 export default function Home() {
   const [phase, setPhase] = useState(0)
   const [selectedApp, setSelectedApp] = useState<App | null>(null)
+  const [logoSize, setLogoSize] = useState(240)
+
+  useEffect(() => {
+    if (window.innerHeight < 700) setLogoSize(200)
+  }, [])
 
   useEffect(() => {
     const t1 = setTimeout(() => setPhase(1), 100)
@@ -108,7 +113,7 @@ export default function Home() {
           marginTop: 'clamp(12px, 2.5vh, 24px)',
           marginBottom: 'clamp(4px, 1vh, 10px)',
         }}>
-          <HarmonicLogo size={200} />
+          <HarmonicLogo size={logoSize} />
         </div>
 
         {/* App Area */}
