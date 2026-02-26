@@ -50,15 +50,27 @@ export default function AppIcon({ id, size = 48, color = 'white' }: AppIconProps
 
     case 'overtone-singer':
       return (
-        <svg {...common} viewBox="0 0 48 48" stroke={color} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round">
-          {/* Tuning fork prongs */}
-          <path d="M20 8v14" />
-          <path d="M28 8v14" />
-          <path d="M20 22a4 4 0 0 0 8 0" />
-          <line x1="24" y1="26" x2="24" y2="38" />
-          {/* Sound arcs */}
-          <path d="M33 14a8 8 0 0 1 0 12" strokeWidth="1.5" />
-          <path d="M37 10a14 14 0 0 1 0 20" strokeWidth="1.5" opacity="0.5" />
+        <svg {...common} viewBox="0 0 48 48" fill="none">
+          {/* Face profile — single stroke, facing right */}
+          <path
+            d="M22 8 C22 8, 16 10, 16 16 C16 20, 18 22, 20 23 L18 25 C18 25, 16 27, 17 29 L20 31 C20 31, 18 36, 18 40"
+            stroke={color}
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          {/* Mouth opening — small gap showing singing */}
+          <path
+            d="M20 25.5 L23 24.5"
+            stroke={color}
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            opacity="0.7"
+          />
+          {/* Harmonic waves from mouth */}
+          <path d="M26 22 Q30 25, 26 28" stroke={color} strokeWidth="1.8" strokeLinecap="round" opacity="0.7" />
+          <path d="M30 19 Q36 25, 30 31" stroke={color} strokeWidth="1.5" strokeLinecap="round" opacity="0.45" />
+          <path d="M34 16 Q42 25, 34 34" stroke={color} strokeWidth="1.2" strokeLinecap="round" opacity="0.25" />
         </svg>
       )
 
