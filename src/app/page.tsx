@@ -105,6 +105,8 @@ export default function Home() {
           justifyContent: 'center',
           position: 'relative',
           zIndex: 10,
+          marginTop: 'auto',
+          marginBottom: 'auto',
         }}>
           <HarmonicLogo size={160} />
         </div>
