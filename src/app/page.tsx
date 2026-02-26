@@ -1,16 +1,24 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import type { AppData } from '@/data/apps'
-import SacredGeometry from '@/components/SacredGeometry'
-import Particles from '@/components/Particles'
-import AppOrbit from '@/components/AppOrbit'
-import AppReveal from '@/components/AppReveal'
+import { apps } from '@/lib/apps'
+import type { App } from '@/lib/apps'
+import AuroraCanvas from '@/components/AuroraCanvas'
+import FlagshipCard from '@/components/FlagshipCard'
+import AppCard from '@/components/AppCard'
+import AppOverlay from '@/components/AppOverlay'
 
 export default function Home() {
-  const [selectedApp, setSelectedApp] = useState<AppData | null>(null)
+  const [phase, setPhase] = useState(0)
+  const [selectedApp, setSelectedApp] = useState<App | null>(null)
 
-  // Lock body scroll when overlay is open
+  useEffect(() => {
+    const t1 = setTimeout(() => setPhase(1), 100)
+    const t2 = setTimeout(() => setPhase(2), 700)
+    const t3 = setTimeout(() => setPhase(3), 1800)
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3) }
+  }, [])
+
   useEffect(() => {
     if (selectedApp) {
       document.body.style.overflow = 'hidden'
@@ -20,115 +28,109 @@ export default function Home() {
     return () => { document.body.style.overflow = '' }
   }, [selectedApp])
 
+  const flagship = apps.find(a => a.flagship)!
+  const gridApps = apps.filter(a => !a.flagship)
+
   return (
     <main
       className="relative overflow-hidden flex flex-col"
       style={{
-        background: 'radial-gradient(ellipse at 30% 20%, rgba(15, 10, 40, 1) 0%, rgba(5, 5, 15, 1) 70%)',
         height: '100dvh',
         maxHeight: '100dvh',
       }}
     >
-      {/* Background layers */}
-      <SacredGeometry />
-      <Particles />
-
-      {/* Nebula glow — slowly drifting */}
-      <div
-        className="fixed inset-0 pointer-events-none"
-        style={{
-          zIndex: 1,
-          animation: 'nebulaDrift 40s ease-in-out infinite',
-        }}
-      >
-        <div
-          className="absolute"
-          style={{
-            width: '60%',
-            height: '60%',
-            top: '10%',
-            left: '15%',
-            background: 'radial-gradient(ellipse, rgba(80, 40, 120, 0.08), transparent 70%)',
-            borderRadius: '50%',
-          }}
-        />
-        <div
-          className="absolute"
-          style={{
-            width: '50%',
-            height: '50%',
-            top: '40%',
-            left: '55%',
-            background: 'radial-gradient(ellipse, rgba(20, 40, 80, 0.06), transparent 70%)',
-            borderRadius: '50%',
-          }}
-        />
-        <div
-          className="absolute"
-          style={{
-            width: '45%',
-            height: '45%',
-            top: '55%',
-            left: '5%',
-            background: 'radial-gradient(ellipse, rgba(20, 60, 80, 0.05), transparent 70%)',
-            borderRadius: '50%',
-          }}
-        />
-      </div>
+      {/* Aurora background */}
+      <AuroraCanvas />
 
       {/* Content — single screen, no scroll */}
-      <div className="relative z-10 flex flex-col h-full">
+      <div
+        className="relative z-10 flex flex-col justify-between h-full"
+        style={{ padding: '0 20px' }}
+      >
         {/* Header */}
         <header
           className="text-center flex-shrink-0"
-          style={{ paddingTop: 'calc(env(safe-area-inset-top, 0px) + 12px)', paddingBottom: '0px' }}
+          style={{
+            paddingTop: 'calc(env(safe-area-inset-top, 0px) + 3.5vh)',
+            opacity: phase >= 1 ? 1 : 0,
+            transform: phase >= 1 ? 'translateY(0)' : 'translateY(-10px)',
+            transition: 'opacity 0.6s ease, transform 0.6s ease',
+          }}
         >
           <h1
-            className="entry-title"
             style={{
-              fontFamily: 'var(--font-display)',
               fontSize: '18px',
-              fontWeight: 400,
-              letterSpacing: '0.3em',
+              fontWeight: 300,
+              letterSpacing: '0.38em',
               textTransform: 'uppercase',
-              color: 'rgba(255, 255, 255, 0.9)',
+              background: 'linear-gradient(135deg, #e0d4ff, #fff, #c4e0ff)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
               marginBottom: '6px',
             }}
           >
             Harmonic Waves
           </h1>
           <p
-            className="entry-subtitle"
             style={{
-              fontFamily: 'var(--font-body)',
               fontSize: '13px',
               fontStyle: 'italic',
               fontWeight: 300,
-              color: '#C9A96E',
-              opacity: 0.6,
-              marginBottom: '4px',
+              background: 'linear-gradient(90deg, #c9a96e, #e8d5a8)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              marginBottom: '6px',
             }}
           >
             Tools for Sound Healers
           </p>
-          <div
-            className="flex items-center justify-center gap-3 entry-divider"
-          >
-            <div className="w-10 h-px" style={{ background: 'rgba(255, 255, 255, 0.1)' }} />
-            <span style={{ color: 'rgba(255, 255, 255, 0.15)', fontSize: '10px' }}>&#9830;</span>
-            <div className="w-10 h-px" style={{ background: 'rgba(255, 255, 255, 0.1)' }} />
+          <div className="flex items-center justify-center gap-3">
+            <div className="w-10 h-px" style={{ background: 'rgba(255,255,255,0.1)' }} />
+            <span style={{ color: 'rgba(255,255,255,0.15)', fontSize: '10px' }}>&#9671;</span>
+            <div className="w-10 h-px" style={{ background: 'rgba(255,255,255,0.1)' }} />
           </div>
         </header>
 
-        {/* App Orbit */}
-        <AppOrbit onSelectApp={setSelectedApp} />
+        {/* App Area */}
+        <div className="flex-1 flex flex-col justify-center" style={{ gap: '2.5vh' }}>
+          {/* Flagship card */}
+          <FlagshipCard
+            app={flagship}
+            onClick={() => setSelectedApp(flagship)}
+            visible={phase >= 2}
+          />
+
+          {/* 3×2 Grid */}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: '12px',
+            }}
+          >
+            {gridApps.map((app, i) => (
+              <AppCard
+                key={app.id}
+                app={app}
+                onClick={() => setSelectedApp(app)}
+                visible={phase >= 2}
+                delay={80 * i}
+              />
+            ))}
+          </div>
+        </div>
 
         {/* Footer */}
         <footer
-          className="flex-shrink-0 text-center entry-footer"
-          style={{ paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 8px)', paddingTop: '4px' }}
+          className="flex-shrink-0 text-center"
+          style={{
+            paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 2vh)',
+            paddingTop: '1vh',
+            opacity: phase >= 3 ? 1 : 0,
+            transition: 'opacity 0.6s ease',
+          }}
         >
-          <p style={{ fontSize: '10px', color: 'rgba(255, 255, 255, 0.2)' }}>
+          <p style={{ fontSize: '10px', color: 'rgba(255,255,255,0.2)' }}>
             Created by Remigijus Dzingelevi&#269;ius
           </p>
           <p
@@ -136,7 +138,7 @@ export default function Home() {
               fontSize: '9px',
               letterSpacing: '0.12em',
               textTransform: 'uppercase',
-              color: 'rgba(255, 255, 255, 0.12)',
+              color: 'rgba(255,255,255,0.12)',
             }}
           >
             Sound Healer &amp; Developer
@@ -144,8 +146,8 @@ export default function Home() {
         </footer>
       </div>
 
-      {/* Mobile overlay */}
-      <AppReveal app={selectedApp} onClose={() => setSelectedApp(null)} />
+      {/* Overlay */}
+      <AppOverlay app={selectedApp} onClose={() => setSelectedApp(null)} />
     </main>
   )
 }

@@ -1,19 +1,12 @@
 import type { Metadata } from 'next'
 import Script from 'next/script'
-import { Cormorant_Garamond, Plus_Jakarta_Sans } from 'next/font/google'
+import { Outfit } from 'next/font/google'
 import './globals.css'
 
-const cormorant = Cormorant_Garamond({
+const outfit = Outfit({
   subsets: ['latin'],
-  weight: ['300', '400', '600'],
-  variable: '--font-cormorant',
-  display: 'swap',
-})
-
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
-  variable: '--font-jakarta',
+  weight: ['200', '300', '400', '500', '600'],
+  variable: '--font-outfit',
   display: 'swap',
 })
 
@@ -30,7 +23,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${jakarta.variable}`}>
+    <html lang="en" className={outfit.variable}>
       <head>
         <Script
           defer
