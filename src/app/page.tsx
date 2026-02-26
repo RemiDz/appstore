@@ -99,19 +99,6 @@ export default function Home() {
           </div>
         </header>
 
-        {/* Install button */}
-        <div style={{
-          position: 'relative',
-          zIndex: 10,
-          display: 'flex',
-          justifyContent: 'center',
-          marginTop: 'clamp(8px, 2vh, 14px)',
-          opacity: phase >= 1 ? 1 : 0,
-          transition: 'opacity 0.6s ease 0.3s',
-        }}>
-          <InstallButton />
-        </div>
-
         {/* Animated logo — between header and apps */}
         <div style={{
           display: 'flex',
@@ -150,6 +137,19 @@ export default function Home() {
               />
             ))}
           </div>
+        </div>
+
+        {/* Install button */}
+        <div style={{
+          position: 'relative',
+          zIndex: 10,
+          display: 'flex',
+          justifyContent: 'center',
+          marginTop: 'clamp(8px, 2vh, 14px)',
+          opacity: phase >= 1 ? 1 : 0,
+          transition: 'opacity 0.6s ease 0.3s',
+        }}>
+          <InstallButton />
         </div>
 
         {/* Footer */}
