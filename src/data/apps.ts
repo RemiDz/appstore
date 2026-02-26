@@ -23,17 +23,6 @@ export const apps: AppNode[] = [
     position: { x: 78, y: 62 },
   },
   {
-    id: 'overtone-singer',
-    name: 'Overtone Singer',
-    tagline: 'Real-Time Overtone Visualiser',
-    description:
-      'See your overtones as you sing them. A real-time frequency analyser designed specifically for overtone singing, showing fundamental and harmonic partials with precision visual feedback.',
-    url: 'https://overtonesinger.com',
-    element: 'Air',
-    glowColor: '#22d3ee',
-    position: { x: 72, y: 30 },
-  },
-  {
     id: 'binara',
     name: 'Binara',
     tagline: 'Tune Your Brainwaves',
@@ -43,6 +32,17 @@ export const apps: AppNode[] = [
     element: 'Ether',
     glowColor: '#a78bfa',
     position: { x: 75, y: 46 },
+  },
+  {
+    id: 'overtone-singer',
+    name: 'Overtone Singer',
+    tagline: 'Real-Time Overtone Visualiser',
+    description:
+      'See your overtones as you sing them. A real-time frequency analyser designed specifically for overtone singing, showing fundamental and harmonic partials with precision visual feedback.',
+    url: 'https://overtonesinger.com',
+    element: 'Air',
+    glowColor: '#22d3ee',
+    position: { x: 72, y: 30 },
   },
   {
     id: 'sonarus',
