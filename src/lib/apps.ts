@@ -47,8 +47,6 @@ export const apps: App[] = [
     accentRgb: '251,146,60',
     glow1: '#EA580C',
     glow2: '#FDBA74',
-    isPro: true,
-    price: '$6.99',
   },
   {
     id: 'sonarus',
@@ -63,7 +61,7 @@ export const apps: App[] = [
   },
   {
     id: 'lunar',
-    name: 'Lunar Practitioner',
+    name: 'Lunar App',
     tagline: 'Moon-Guided Session Planner',
     description: 'Moon intelligence for sound healing sessions and ceremony planning. Live lunar data with phase-specific guidance.',
     url: 'https://lunata.app',
