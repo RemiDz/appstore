@@ -13,17 +13,20 @@ import HarmonicLogo from '@/components/HarmonicLogo'
 export default function Home() {
   const [phase, setPhase] = useState(0)
   const [selectedApp, setSelectedApp] = useState<App | null>(null)
-  const [logoSize, setLogoSize] = useState(200)
-  const headerRef = useRef<HTMLElement>(null)
-  const appsRef = useRef<HTMLDivElement>(null)
+  const [logoSize, setLogoSize] = useState(180)
+  const logoContainerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const measure = () => {
-      if (!headerRef.current || !appsRef.current) return
-      const gap = appsRef.current.getBoundingClientRect().top - headerRef.current.getBoundingClientRect().bottom
-      setLogoSize(Math.floor(Math.max(140, gap * 0.9)))
+      if (!logoContainerRef.current) return
+      const h = logoContainerRef.current.clientHeight
+      const w = logoContainerRef.current.clientWidth
+      const s = Math.floor(Math.min(h, w) * 0.95)
+      setLogoSize(Math.max(140, s))
     }
-    measure()
+    requestAnimationFrame(() => {
+      requestAnimationFrame(measure)
+    })
     window.addEventListener('resize', measure)
     return () => window.removeEventListener('resize', measure)
   }, [])
@@ -66,12 +69,11 @@ export default function Home() {
 
       {/* Content — single screen, no scroll */}
       <div
-        className="relative z-10 flex flex-col justify-between h-full"
+        className="relative z-10 flex flex-col h-full"
         style={{ padding: '0 20px' }}
       >
         {/* Header */}
         <header
-          ref={headerRef}
           className="text-center flex-shrink-0"
           style={{
             paddingTop: 'calc(env(safe-area-inset-top, 0px) + 3.5vh)',
@@ -114,18 +116,24 @@ export default function Home() {
           </div>
         </header>
 
-        {/* Animated logo — between header and apps */}
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          position: 'relative',
-          zIndex: 10,
-        }}>
+        {/* Animated logo — fills all remaining space */}
+        <div
+          ref={logoContainerRef}
+          style={{
+            flex: 1,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            position: 'relative',
+            zIndex: 10,
+            minHeight: 0,
+          }}
+        >
           <HarmonicLogo size={logoSize} />
         </div>
 
         {/* App Area */}
-        <div ref={appsRef} className="flex-1 flex flex-col justify-center" style={{ gap: '2.5vh' }}>
+        <div className="flex flex-col flex-shrink-0" style={{ gap: '2.5vh' }}>
           {/* Flagship card */}
           <FlagshipCard
             app={flagship}
