@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { apps } from '@/lib/apps'
 import type { App } from '@/lib/apps'
 import AuroraCanvas from '@/components/AuroraCanvas'
@@ -13,17 +13,19 @@ import HarmonicLogo from '@/components/HarmonicLogo'
 export default function Home() {
   const [phase, setPhase] = useState(0)
   const [selectedApp, setSelectedApp] = useState<App | null>(null)
-  const [logoSize, setLogoSize] = useState(280)
+  const [logoSize, setLogoSize] = useState(200)
+  const headerRef = useRef<HTMLElement>(null)
+  const appsRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const calculate = () => {
-      const vh = window.innerHeight
-      const available = vh - 500
-      setLogoSize(Math.max(200, Math.min(available, 340)))
+    const measure = () => {
+      if (!headerRef.current || !appsRef.current) return
+      const gap = appsRef.current.getBoundingClientRect().top - headerRef.current.getBoundingClientRect().bottom
+      setLogoSize(Math.floor(Math.max(140, gap * 0.9)))
     }
-    calculate()
-    window.addEventListener('resize', calculate)
-    return () => window.removeEventListener('resize', calculate)
+    measure()
+    window.addEventListener('resize', measure)
+    return () => window.removeEventListener('resize', measure)
   }, [])
 
   useEffect(() => {
@@ -69,6 +71,7 @@ export default function Home() {
       >
         {/* Header */}
         <header
+          ref={headerRef}
           className="text-center flex-shrink-0"
           style={{
             paddingTop: 'calc(env(safe-area-inset-top, 0px) + 3.5vh)',
@@ -117,14 +120,12 @@ export default function Home() {
           justifyContent: 'center',
           position: 'relative',
           zIndex: 10,
-          marginTop: 'clamp(12px, 2.5vh, 24px)',
-          marginBottom: 'clamp(4px, 1vh, 10px)',
         }}>
           <HarmonicLogo size={logoSize} />
         </div>
 
         {/* App Area */}
-        <div className="flex-1 flex flex-col justify-center" style={{ gap: '2.5vh' }}>
+        <div ref={appsRef} className="flex-1 flex flex-col justify-center" style={{ gap: '2.5vh' }}>
           {/* Flagship card */}
           <FlagshipCard
             app={flagship}
