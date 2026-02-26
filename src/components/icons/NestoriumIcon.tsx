@@ -1,4 +1,4 @@
-export default function NestorLabIcon({ size = 48, className = '', color = 'white' }: { size?: number; className?: string; color?: string }) {
+export default function NestoriumIcon({ size = 48, className = '', color = 'white' }: { size?: number; className?: string; color?: string }) {
   return (
     <svg
       width={size}

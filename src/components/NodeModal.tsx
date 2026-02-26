@@ -7,16 +7,18 @@ import EarthPulseIcon from './icons/EarthPulseIcon'
 import LunarIcon from './icons/LunarIcon'
 import SonarusIcon from './icons/SonarusIcon'
 import OvertoneIcon from './icons/OvertoneIcon'
-import NestorLabIcon from './icons/NestorLabIcon'
+import NestoriumIcon from './icons/NestoriumIcon'
 import TidaraIcon from './icons/TidaraIcon'
+import BinaraIcon from './icons/BinaraIcon'
 
 const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string; color?: string }>> = {
   'earth-pulse': EarthPulseIcon,
   'lunar-practitioner': LunarIcon,
   'sonarus': SonarusIcon,
   'overtone-singer': OvertoneIcon,
-  'nestorlab': NestorLabIcon,
+  'nestorlab': NestoriumIcon,
   'tidara': TidaraIcon,
+  'binara': BinaraIcon,
 }
 
 const elementEmoji: Record<string, string> = {

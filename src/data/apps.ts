@@ -13,7 +13,7 @@ export interface AppNode {
 export const apps: AppNode[] = [
   {
     id: 'nestorlab',
-    name: 'NestorLab',
+    name: 'Nestorium',
     tagline: 'Frequency Synthesis Platform',
     description:
       'Your complete frequency toolkit. Generate binaural beats, isochronal tones, solfeggio frequencies, and custom harmonic blends. A comprehensive synthesis platform for sound healing professionals.',
@@ -65,6 +65,17 @@ export const apps: AppNode[] = [
     element: 'Water',
     glowColor: '#4fc3f7',
     position: { x: 50, y: 82 },
+  },
+  {
+    id: 'binara',
+    name: 'Binara',
+    tagline: 'Tune Your Brainwaves',
+    description:
+      'Pure binaural beats and brainwave entrainment. Choose your target state — focus, sleep, meditation, creativity — and let precise stereo frequencies guide your brain into resonance. Headphones required.',
+    url: 'https://binara.app',
+    element: 'Water',
+    glowColor: '#38B2CC',
+    position: { x: 50, y: 12 },
   },
   {
     id: 'earth-pulse',

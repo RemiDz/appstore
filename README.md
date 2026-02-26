@@ -5,7 +5,7 @@ A single-page landing site showcasing sound healing and frequency analysis web a
 ## Apps
 
 - **[Overtone Singer](https://overtonesinger.com)** — Real-time vocal frequency analyzer for overtone singers
-- **[NestorLab](https://nestorlab.app)** — Browser-based sound healing toolkit with binaural beats & guided journeys
+- **[Nestorium](https://nestorlab.app)** — Browser-based sound healing toolkit with binaural beats & guided journeys
 - **[Resonance Body Map](https://remidz.github.io/Body/)** — Interactive body visualization mapping live frequencies to chakra regions
 
 ## Tech
