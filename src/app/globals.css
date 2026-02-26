@@ -28,20 +28,22 @@ html, body {
   align-items: center;
   border: none;
   cursor: pointer;
-  background: rgba(255,255,255,0.04);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.08), rgba(var(--accent-rgb), 0.03));
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   border-radius: 20px;
   will-change: transform, opacity;
   -webkit-tap-highlight-color: transparent;
+  overflow: hidden;
 }
 
+/* Animated gradient border (hover-only on grid, always on flagship) */
 .hw-card::before {
   content: '';
   position: absolute;
   inset: -1px;
   border-radius: 21px;
-  background: linear-gradient(135deg, var(--glow1)44, var(--glow2)22, var(--glow1)44);
+  background: linear-gradient(135deg, var(--glow1)66, var(--glow2)33, var(--glow1)66);
   background-size: 200% 200%;
   animation: borderShift 4s ease-in-out infinite;
   opacity: 0;
@@ -54,15 +56,42 @@ html, body {
   padding: 1px;
 }
 
+/* Inner ambient glow — always visible */
+.hw-card::after {
+  content: '';
+  position: absolute;
+  top: -40%;
+  left: 5%;
+  right: 5%;
+  height: 70%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(var(--accent-rgb), 0.10), transparent 70%);
+  filter: blur(20px);
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
 /* ── Flagship Card ─────────────────────────────────── */
 .hw-flagship {
   width: 100%;
   padding: 14px 18px;
-  border: 1px solid rgba(255,255,255,0.06);
+  border: 1px solid rgba(var(--accent-rgb), 0.2);
+  background: linear-gradient(135deg, rgba(167,139,250,0.10), rgba(139,111,232,0.04), rgba(167,139,250,0.08));
 }
 
 .hw-flagship::before {
+  inset: -1px;
+  border-radius: 25px;
+  background: linear-gradient(135deg, rgba(167,139,250,0.4), rgba(34,211,238,0.2), rgba(192,132,252,0.3), rgba(167,139,250,0.4));
+  background-size: 300% 300%;
+  animation: borderShift 5s ease-in-out infinite;
   opacity: 1;
+  padding: 1.5px;
+}
+
+.hw-flagship::after {
+  background: radial-gradient(ellipse, rgba(167,139,250,0.15), transparent 70%);
 }
 
 .hw-flagship:active {
@@ -74,10 +103,11 @@ html, body {
   flex-direction: column;
   justify-content: center;
   padding: 16px 8px 12px;
-  border: 1px solid rgba(255,255,255,0.06);
+  border: 1px solid rgba(var(--accent-rgb), 0.15);
   transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
               box-shadow 0.35s ease,
-              background 0.35s ease;
+              background 0.35s ease,
+              border-color 0.35s ease;
 }
 
 .hw-grid-card:active {
@@ -88,11 +118,19 @@ html, body {
 @media (hover: hover) {
   .hw-grid-card:hover {
     transform: scale(1.06) translateY(-3px);
-    box-shadow: 0 8px 32px rgba(var(--accent-rgb), 0.15);
+    background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.15), rgba(var(--accent-rgb), 0.06));
+    border-color: rgba(var(--accent-rgb), 0.3);
+    box-shadow:
+      0 0 20px rgba(var(--accent-rgb), 0.12),
+      0 8px 32px rgba(var(--accent-rgb), 0.18);
   }
 
   .hw-grid-card:hover::before {
     opacity: 1;
+  }
+
+  .hw-grid-card:hover::after {
+    background: radial-gradient(ellipse, rgba(var(--accent-rgb), 0.20), transparent 70%);
   }
 
   .hw-grid-card:hover .hw-card-name {
@@ -100,20 +138,24 @@ html, body {
   }
 
   .hw-flagship:hover {
-    box-shadow: 0 8px 32px rgba(var(--accent-rgb), 0.2);
+    box-shadow:
+      0 0 24px rgba(var(--accent-rgb), 0.15),
+      0 8px 32px rgba(var(--accent-rgb), 0.2);
   }
 }
 
 /* ── Icon Glow Pulse ───────────────────────────────── */
 @keyframes iconGlow {
-  0%, 100% { opacity: 0.5; transform: scale(1); }
-  50%      { opacity: 0.8; transform: scale(1.15); }
+  0%, 100% { transform: scale(0.8); opacity: 0.5; }
+  50%      { transform: scale(1.35); opacity: 1; }
 }
 
 /* ── Border Shift ──────────────────────────────────── */
 @keyframes borderShift {
   0%, 100% { background-position: 0% 50%; }
-  50%      { background-position: 100% 50%; }
+  25%      { background-position: 100% 0%; }
+  50%      { background-position: 100% 100%; }
+  75%      { background-position: 0% 100%; }
 }
 
 /* ── Entry Sequence ────────────────────────────────── */

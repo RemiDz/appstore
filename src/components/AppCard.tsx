@@ -8,9 +8,10 @@ interface AppCardProps {
   onClick: () => void
   visible: boolean
   delay: number
+  index: number
 }
 
-export default function AppCard({ app, onClick, visible, delay }: AppCardProps) {
+export default function AppCard({ app, onClick, visible, delay, index }: AppCardProps) {
   return (
     <button
       onClick={onClick}
@@ -21,8 +22,8 @@ export default function AppCard({ app, onClick, visible, delay }: AppCardProps) 
         '--accent': app.accent,
         '--accent-rgb': app.accentRgb,
         opacity: visible ? 1 : 0,
-        transform: visible ? 'scale(1)' : 'scale(0.7)',
-        transition: `opacity 0.5s ease ${delay}ms, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) ${delay}ms`,
+        transform: visible ? 'scale(1) translateY(0)' : 'scale(0.65) translateY(30px)',
+        transition: `opacity 0.5s ease ${delay}ms, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) ${delay}ms`,
       } as React.CSSProperties}
     >
       {/* Icon with glow */}
@@ -31,17 +32,27 @@ export default function AppCard({ app, onClick, visible, delay }: AppCardProps) 
           className="hw-icon-glow"
           style={{
             position: 'absolute',
-            inset: '-10px',
+            inset: '-16px',
             borderRadius: '50%',
-            background: `radial-gradient(circle, rgba(${app.accentRgb}, 0.2) 0%, transparent 70%)`,
-            animation: 'iconGlow 3s ease-in-out infinite',
+            background: `radial-gradient(circle, rgba(${app.accentRgb}, 0.30) 0%, transparent 70%)`,
+            animation: 'iconGlow 3.5s ease-in-out infinite',
+            animationDelay: `${index * 0.5}s`,
           }}
         />
         <AppIcon id={app.id} size={36} color={app.accent} />
       </div>
 
       {/* Name */}
-      <div className="hw-card-name" style={{ fontSize: '12px', fontWeight: 400, color: 'rgba(255,255,255,0.85)', lineHeight: 1.2 }}>
+      <div
+        className="hw-card-name"
+        style={{
+          fontSize: '12px',
+          fontWeight: 400,
+          color: 'rgba(255,255,255,0.88)',
+          lineHeight: 1.2,
+          transition: 'color 0.25s ease',
+        }}
+      >
         {app.name}
       </div>
 
@@ -52,14 +63,15 @@ export default function AppCard({ app, onClick, visible, delay }: AppCardProps) 
             position: 'absolute',
             top: '6px',
             right: '6px',
-            fontSize: '8px',
+            fontSize: '9px',
             fontWeight: 600,
-            letterSpacing: '0.08em',
+            letterSpacing: '0.1em',
             textTransform: 'uppercase',
             color: app.accent,
-            background: `rgba(${app.accentRgb}, 0.12)`,
-            padding: '2px 5px',
-            borderRadius: '4px',
+            background: `linear-gradient(135deg, rgba(${app.accentRgb}, 0.2), rgba(${app.accentRgb}, 0.1))`,
+            border: `1px solid rgba(${app.accentRgb}, 0.25)`,
+            padding: '3px 10px',
+            borderRadius: '20px',
             lineHeight: 1.3,
           }}
         >

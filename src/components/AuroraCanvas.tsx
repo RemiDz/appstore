@@ -36,7 +36,7 @@ export default function AuroraCanvas() {
     const stars: Star[] = Array.from({ length: STAR_COUNT }, () => ({
       x: Math.random(),
       y: Math.random(),
-      r: 0.3 + Math.random() * 1.5,
+      r: 0.4 + Math.random() * 1.8,
       speed: 0.3 + Math.random() * 0.7,
       phase: Math.random() * Math.PI * 2,
     }))
@@ -69,18 +69,18 @@ export default function AuroraCanvas() {
         const cx = (blob.x + ox) * w
         const cy = (blob.y + oy) * h
         const radius = blob.r * Math.min(w, h)
-        const opMod = 0.06 + Math.sin(t * blob.sp * 0.5 + blob.ph) * 0.04
+        const pulse = 0.7 + Math.sin(t * blob.sp * 0.5 + blob.ph) * 0.3
 
         const grad = ctx!.createRadialGradient(cx, cy, 0, cx, cy, radius)
-        grad.addColorStop(0, `rgba(${blob.c1[0]},${blob.c1[1]},${blob.c1[2]},${opMod})`)
-        grad.addColorStop(0.5, `rgba(${blob.c2[0]},${blob.c2[1]},${blob.c2[2]},${opMod * 0.5})`)
+        grad.addColorStop(0, `rgba(${blob.c1[0]},${blob.c1[1]},${blob.c1[2]},${0.35 * pulse})`)
+        grad.addColorStop(0.4, `rgba(${blob.c2[0]},${blob.c2[1]},${blob.c2[2]},${0.20 * pulse})`)
         grad.addColorStop(1, 'rgba(0,0,0,0)')
         ctx!.fillStyle = grad
         ctx!.fillRect(0, 0, w, h)
       }
 
       for (const star of stars) {
-        const opacity = 0.2 + Math.sin(t * 0.001 * star.speed + star.phase) * 0.2
+        const opacity = 0.5 + Math.sin(t * 0.001 * star.speed + star.phase) * 0.3
         ctx!.beginPath()
         ctx!.arc(star.x * w, star.y * h, star.r, 0, Math.PI * 2)
         ctx!.fillStyle = `rgba(255,255,255,${Math.max(0, opacity)})`

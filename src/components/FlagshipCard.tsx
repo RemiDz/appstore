@@ -20,8 +20,8 @@ export default function FlagshipCard({ app, onClick, visible }: FlagshipCardProp
         '--accent': app.accent,
         '--accent-rgb': app.accentRgb,
         opacity: visible ? 1 : 0,
-        transform: visible ? 'scale(1)' : 'scale(0.88)',
-        transition: 'opacity 0.6s ease, transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1)',
+        transform: visible ? 'scale(1) translateY(0)' : 'scale(0.8) translateY(16px)',
+        transition: 'opacity 0.7s ease, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)',
       } as React.CSSProperties}
     >
       {/* Icon with pulsing glow */}
@@ -30,10 +30,10 @@ export default function FlagshipCard({ app, onClick, visible }: FlagshipCardProp
           className="hw-icon-glow"
           style={{
             position: 'absolute',
-            inset: '-12px',
+            inset: '-24px',
             borderRadius: '50%',
-            background: `radial-gradient(circle, rgba(${app.accentRgb}, 0.25) 0%, transparent 70%)`,
-            animation: 'iconGlow 3s ease-in-out infinite',
+            background: `radial-gradient(circle, rgba(${app.accentRgb}, 0.40) 0%, transparent 70%)`,
+            animation: 'iconGlow 3.5s ease-in-out infinite',
           }}
         />
         <AppIcon id={app.id} size={44} color={app.accent} />

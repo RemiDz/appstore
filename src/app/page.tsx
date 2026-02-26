@@ -114,7 +114,8 @@ export default function Home() {
                 app={app}
                 onClick={() => setSelectedApp(app)}
                 visible={phase >= 2}
-                delay={80 * i}
+                delay={100 * i}
+                index={i}
               />
             ))}
           </div>
