@@ -23,54 +23,39 @@ export default function AppIcon({ id, size = 48, color = 'white' }: AppIconProps
 
     case 'binara':
       return (
-        <svg {...common} viewBox="0 0 48 48">
-          {/* Brainwave zigzag pulse */}
+        <svg {...common} viewBox="0 0 48 48" fill="none">
+          {/* Lucide Brain icon scaled to 48x48 */}
+          <g transform="translate(6, 4) scale(1.5)" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity="0.55">
+            <path d="M12 18V5" />
+            <path d="M15 13a4.17 4.17 0 0 1-3-4 4.17 4.17 0 0 1-3 4" />
+            <path d="M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5" />
+            <path d="M17.997 5.125a4 4 0 0 1 2.526 5.77" />
+            <path d="M18 18a4 4 0 0 0 2-7.464" />
+            <path d="M19.967 17.483A4 4 0 1 1 12 18a4 4 0 1 1-7.967-.517" />
+            <path d="M6 18a4 4 0 0 1-2-7.464" />
+            <path d="M6.003 5.125a4 4 0 0 0-2.526 5.77" />
+          </g>
+          {/* Horizontal brainwave cutting through */}
           <path
-            d="M24 4 L24 14 L18 20 L30 28 L24 34 L24 44"
-            stroke={color}
-            strokeWidth={2.2}
-            strokeLinecap="round"
-            strokeLinejoin="round"
+            d="M4 26 L12 26 L16 18 L20 32 L24 20 L28 30 L32 22 L36 26 L44 26"
+            stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"
+            opacity="0.85"
           />
-          {/* Emanation ring */}
-          <circle cx="24" cy="24" r="6" fill="none" stroke={color} strokeWidth="0.8">
-            <animate attributeName="r" values="6;12;6" dur="3s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.2;0;0.2" dur="3s" repeatCount="indefinite" />
-          </circle>
-          {/* Centre pulse */}
-          <circle cx="24" cy="24" fill={color}>
-            <animate attributeName="r" values="2.5;4;2.5" dur="2s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.7;0.3;0.7" dur="2s" repeatCount="indefinite" />
-          </circle>
-          {/* Endpoint dots */}
-          <circle cx="24" cy="4" r="2" fill={color} opacity="0.5" />
-          <circle cx="24" cy="44" r="2" fill={color} opacity="0.5" />
         </svg>
       )
 
     case 'overtone-singer':
       return (
         <svg {...common} viewBox="0 0 48 48" fill="none">
-          {/* Face profile — single stroke, facing right */}
-          <path
-            d="M22 8 C22 8, 16 10, 16 16 C16 20, 18 22, 20 23 L18 25 C18 25, 16 27, 17 29 L20 31 C20 31, 18 36, 18 40"
-            stroke={color}
-            strokeWidth="2.2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          {/* Mouth opening — small gap showing singing */}
-          <path
-            d="M20 25.5 L23 24.5"
-            stroke={color}
-            strokeWidth="1.6"
-            strokeLinecap="round"
-            opacity="0.7"
-          />
-          {/* Harmonic waves from mouth */}
-          <path d="M26 22 Q30 25, 26 28" stroke={color} strokeWidth="1.8" strokeLinecap="round" opacity="0.7" />
-          <path d="M30 19 Q36 25, 30 31" stroke={color} strokeWidth="1.5" strokeLinecap="round" opacity="0.45" />
-          <path d="M34 16 Q42 25, 34 34" stroke={color} strokeWidth="1.2" strokeLinecap="round" opacity="0.25" />
+          {/* Lucide MicVocal icon scaled to 48x48 */}
+          <g transform="translate(4, 4) scale(1.65)" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="m11 7.601-5.994 8.19a1 1 0 0 0 .1 1.298l.817.818a1 1 0 0 0 1.314.087L15.09 12" />
+            <path d="M16.5 21.174C15.5 20.5 14.372 20 13 20c-2.058 0-3.928 2.356-6 2-2.072-.356-2.775-3.369-1.5-4.5" />
+            <circle cx="16" cy="7" r="5" />
+          </g>
+          {/* Harmonic wave arcs */}
+          <path d="M34 18 Q38 24, 34 30" stroke={color} strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />
+          <path d="M38 15 Q44 24, 38 33" stroke={color} strokeWidth="1.2" strokeLinecap="round" opacity="0.25" />
         </svg>
       )
 
