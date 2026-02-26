@@ -13,10 +13,17 @@ import HarmonicLogo from '@/components/HarmonicLogo'
 export default function Home() {
   const [phase, setPhase] = useState(0)
   const [selectedApp, setSelectedApp] = useState<App | null>(null)
-  const [logoSize, setLogoSize] = useState(240)
+  const [logoSize, setLogoSize] = useState(280)
 
   useEffect(() => {
-    if (window.innerHeight < 700) setLogoSize(200)
+    const calculate = () => {
+      const vh = window.innerHeight
+      const available = vh - 500
+      setLogoSize(Math.max(200, Math.min(available, 340)))
+    }
+    calculate()
+    window.addEventListener('resize', calculate)
+    return () => window.removeEventListener('resize', calculate)
   }, [])
 
   useEffect(() => {
