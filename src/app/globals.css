@@ -137,6 +137,14 @@ html, body {
     color: var(--accent) !important;
   }
 
+  .hw-card:hover .hw-device-icon {
+    opacity: 0.55 !important;
+  }
+
+  .hw-flagship:hover .hw-device-icon {
+    opacity: 0.5 !important;
+  }
+
   .hw-flagship:hover {
     box-shadow:
       0 0 24px rgba(var(--accent-rgb), 0.15),

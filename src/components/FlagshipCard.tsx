@@ -2,6 +2,7 @@
 
 import type { App } from '@/lib/apps'
 import AppIcon from './AppIcon'
+import DeviceIcon from './DeviceIcon'
 
 interface FlagshipCardProps {
   app: App
@@ -47,6 +48,21 @@ export default function FlagshipCard({ app, onClick, visible }: FlagshipCardProp
         <div style={{ fontSize: '12px', fontWeight: 300, color: 'rgba(255,255,255,0.5)', marginTop: '2px' }}>
           {app.tagline}
         </div>
+      </div>
+
+      {/* Device icon */}
+      <div
+        className="hw-device-icon"
+        style={{
+          position: 'absolute',
+          top: '50%',
+          right: 16,
+          transform: 'translateY(-50%)',
+          opacity: 0.25,
+          transition: 'opacity 0.25s ease',
+        }}
+      >
+        <DeviceIcon type={app.device} size={16} color="rgba(255,255,255,0.7)" />
       </div>
     </button>
   )

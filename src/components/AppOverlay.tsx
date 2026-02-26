@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import type { App } from '@/lib/apps'
 import AppIcon from './AppIcon'
+import DeviceIcon from './DeviceIcon'
 
 interface AppOverlayProps {
   app: App | null
@@ -130,6 +131,22 @@ export default function AppOverlay({ app, onClose }: AppOverlayProps) {
                 Pro {app.price}
               </span>
             )}
+          </div>
+
+          {/* Device label */}
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 5,
+              fontSize: 10,
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              color: 'rgba(255,255,255,0.35)',
+            }}
+          >
+            <DeviceIcon type={app.device} size={12} color="rgba(255,255,255,0.35)" />
+            {app.device === 'desktop' ? 'Best on desktop' : 'Mobile optimised'}
           </div>
 
           {/* Description */}

@@ -2,6 +2,7 @@
 
 import type { App } from '@/lib/apps'
 import AppIcon from './AppIcon'
+import DeviceIcon from './DeviceIcon'
 
 interface AppCardProps {
   app: App
@@ -26,6 +27,20 @@ export default function AppCard({ app, onClick, visible, delay, index }: AppCard
         transition: `opacity 0.5s ease ${delay}ms, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) ${delay}ms`,
       } as React.CSSProperties}
     >
+      {/* Device icon */}
+      <div
+        className="hw-device-icon"
+        style={{
+          position: 'absolute',
+          top: 8,
+          right: 8,
+          opacity: 0.3,
+          transition: 'opacity 0.25s ease',
+        }}
+      >
+        <DeviceIcon type={app.device} size={13} color="rgba(255,255,255,0.7)" />
+      </div>
+
       {/* Icon with glow */}
       <div style={{ position: 'relative', marginBottom: '8px' }}>
         <div
@@ -55,29 +70,6 @@ export default function AppCard({ app, onClick, visible, delay, index }: AppCard
       >
         {app.name}
       </div>
-
-      {/* Pro badge */}
-      {app.isPro && (
-        <div
-          style={{
-            position: 'absolute',
-            top: '6px',
-            right: '6px',
-            fontSize: '9px',
-            fontWeight: 600,
-            letterSpacing: '0.1em',
-            textTransform: 'uppercase',
-            color: app.accent,
-            background: `linear-gradient(135deg, rgba(${app.accentRgb}, 0.2), rgba(${app.accentRgb}, 0.1))`,
-            border: `1px solid rgba(${app.accentRgb}, 0.25)`,
-            padding: '3px 10px',
-            borderRadius: '20px',
-            lineHeight: 1.3,
-          }}
-        >
-          Pro
-        </div>
-      )}
     </button>
   )
 }
