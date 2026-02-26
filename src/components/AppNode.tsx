@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback } from 'react'
+import { useCallback, useRef } from 'react'
 import type { AppData } from '@/data/apps'
 
 import EarthPulseIcon from './icons/EarthPulseIcon'
@@ -30,11 +30,25 @@ interface AppNodeProps {
 
 export default function AppNode({ app, index, isCenter, onTap }: AppNodeProps) {
   const Icon = iconMap[app.id]
-  const iconSize = isCenter ? 34 : 28
-  const nameSize = isCenter ? '13px' : '11px'
+  const nodeRef = useRef<HTMLDivElement>(null)
+
+  // Sizes — flagship (centre) is larger
+  const iconSize = isCenter ? 56 : 48
+  const nameSize = isCenter ? '16px' : '14px'
+  const glowSize = isCenter ? '100px' : '80px'
+  const glowOpacity = isCenter ? '24' : '1a' // hex ~14% vs ~10%
   const delay = 1.0 + index * 0.1
 
   const handleClick = useCallback(() => {
+    // Tap pulse feedback
+    const el = nodeRef.current
+    if (el) {
+      el.style.animation = 'none'
+      // Force reflow
+      void el.offsetHeight
+      el.style.animation = `tapPulse 0.25s ease-out`
+    }
+
     if (typeof window !== 'undefined' && window.innerWidth >= 768) {
       window.open(app.url, '_blank', 'noopener,noreferrer')
     } else if (onTap) {
@@ -52,32 +66,34 @@ export default function AppNode({ app, index, isCenter, onTap }: AppNodeProps) {
     >
       {/* Glow */}
       <div
-        className="absolute rounded-full pointer-events-none"
+        className="absolute rounded-full pointer-events-none transition-all duration-300 group-hover:scale-125 group-hover:opacity-80"
         style={{
-          width: isCenter ? '80px' : '64px',
-          height: isCenter ? '80px' : '64px',
-          background: `radial-gradient(circle, ${app.accentColor}30 0%, transparent 70%)`,
+          width: glowSize,
+          height: glowSize,
+          background: `radial-gradient(circle, ${app.accentColor}${glowOpacity} 0%, transparent 70%)`,
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          marginTop: isCenter ? '-10px' : '-8px',
+          marginTop: isCenter ? '-12px' : '-10px',
           animation: `glowPulse 4s ease-in-out ${index * 0.6}s infinite`,
           willChange: 'transform, opacity',
         }}
       />
 
-      {/* Icon */}
-      <div className="relative z-10 transition-transform duration-200 group-hover:scale-110 group-active:scale-95">
+      {/* Icon with tap pulse ref */}
+      <div ref={nodeRef} className="relative z-10 transition-transform duration-200 group-hover:scale-110 group-active:scale-95">
         {Icon && <Icon size={iconSize} color={app.accentColor} />}
       </div>
 
       {/* Name */}
       <span
-        className="relative z-10 mt-1 font-medium text-white text-center leading-tight"
+        className="relative z-10 mt-1.5 text-center leading-tight"
         style={{
           fontSize: nameSize,
-          textShadow: `0 0 16px ${app.accentColor}30`,
-          maxWidth: '80px',
+          fontWeight: 500,
+          color: 'rgba(255, 255, 255, 0.9)',
+          textShadow: `0 0 20px ${app.accentColor}30`,
+          maxWidth: '100px',
         }}
       >
         {app.name}
@@ -88,7 +104,7 @@ export default function AppNode({ app, index, isCenter, onTap }: AppNodeProps) {
         className="hidden md:block absolute z-50 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200"
         style={{
           top: '100%',
-          marginTop: '8px',
+          marginTop: '10px',
           left: '50%',
           transform: 'translateX(-50%)',
           whiteSpace: 'nowrap',
@@ -97,10 +113,10 @@ export default function AppNode({ app, index, isCenter, onTap }: AppNodeProps) {
         <div
           className="px-3 py-1.5 rounded-lg text-center"
           style={{
-            background: 'rgba(10, 10, 30, 0.9)',
+            background: 'rgba(10, 10, 30, 0.92)',
             backdropFilter: 'blur(12px)',
             border: `1px solid ${app.accentColor}25`,
-            fontSize: '11px',
+            fontSize: '12px',
             color: 'rgba(255, 255, 255, 0.6)',
           }}
         >

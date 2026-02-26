@@ -81,7 +81,7 @@ export default function Home() {
         {/* Header */}
         <header
           className="text-center flex-shrink-0"
-          style={{ paddingTop: 'calc(env(safe-area-inset-top, 0px) + 16px)', paddingBottom: '4px' }}
+          style={{ paddingTop: 'calc(env(safe-area-inset-top, 0px) + 12px)', paddingBottom: '0px' }}
         >
           <h1
             className="entry-title"
@@ -106,7 +106,7 @@ export default function Home() {
               fontWeight: 300,
               color: '#C9A96E',
               opacity: 0.6,
-              marginBottom: '8px',
+              marginBottom: '4px',
             }}
           >
             Tools for Sound Healers

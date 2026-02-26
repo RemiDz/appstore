@@ -14,10 +14,9 @@ export default function AppOrbit({ onSelectApp }: AppOrbitProps) {
   const centerApp = apps.find((a) => a.id === CENTER_ID)!
   const ringApps = RING_ORDER.map((id) => apps.find((a) => a.id === id)!)
 
-  // Compute ring positions — hexagonal ring
-  // rx/ry as % of container, creates a slightly elliptical ring that fits portrait screens
-  const rx = 30
-  const ry = 22
+  // Expanded orbital — fills ~85-90% of screen width, ~60-65% of height
+  const rx = 40
+  const ry = 34
   const ringPositions = ringApps.map((_, i) => {
     const angle = ((i * 60 - 90) * Math.PI) / 180
     return {
@@ -28,7 +27,7 @@ export default function AppOrbit({ onSelectApp }: AppOrbitProps) {
 
   return (
     <div className="relative flex-1 w-full" style={{ minHeight: 0 }}>
-      {/* Centre node */}
+      {/* Centre node — flagship */}
       <div
         className="absolute z-10"
         style={{

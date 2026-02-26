@@ -101,6 +101,12 @@ html, body {
   50%      { opacity: calc(var(--p-op) * 0.3); }
 }
 
+@keyframes tapPulse {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
 @keyframes nebulaDrift {
   0%, 100% { transform: translate(0, 0); }
   33%      { transform: translate(8px, -6px); }
