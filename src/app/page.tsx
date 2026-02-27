@@ -127,8 +127,6 @@ export default function Home() {
             position: 'relative',
             zIndex: 10,
             minHeight: 0,
-            opacity: 0,
-            animation: 'logoEntry 2.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards',
           }}
         >
           <HarmonicLogo size={logoSize} />

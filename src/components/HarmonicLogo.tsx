@@ -10,8 +10,10 @@ export default function HarmonicLogo({ size = 200 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const frameRef = useRef(0);
   const rotRef = useRef({ x: 0, y: 0 });
-  const velRef = useRef({ x: 0, y: 0 });
+  const velRef = useRef({ x: 0.06, y: 0.08 });
   const dragRef = useRef({ active: false, lastX: 0, lastY: 0 });
+  const opacityRef = useRef(0);
+  const scaleRef = useRef(0.5);
 
   useEffect(() => {
     const c = canvasRef.current;
@@ -126,7 +128,17 @@ export default function HarmonicLogo({ size = 200 }: Props) {
       if (!running) return;
       const t = frameRef.current++;
       const time = t * 0.006;
+
+      // Entry animation
+      if (opacityRef.current < 1) opacityRef.current = Math.min(1, opacityRef.current + 0.018);
+      if (scaleRef.current < 1) scaleRef.current = Math.min(1, scaleRef.current + (1 - scaleRef.current) * 0.04);
+
       ctx.clearRect(0, 0, s, s);
+      ctx.globalAlpha = opacityRef.current;
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.scale(scaleRef.current, scaleRef.current);
+      ctx.translate(-cx, -cy);
 
       // Momentum
       if (!dragRef.current.active) {
@@ -313,6 +325,9 @@ export default function HarmonicLogo({ size = 200 }: Props) {
       ctx.fillRect(cx - fl, cy - 0.6, fl * 2, 1.2);
       ctx.fillStyle = `rgba(200,210,255,${0.12 * cp})`;
       ctx.fillRect(cx - 0.5, cy - fl * 0.6, 1, fl * 1.2);
+
+      ctx.restore();
+      ctx.globalAlpha = 1;
 
       requestAnimationFrame(draw);
     };
