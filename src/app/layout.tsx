@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import Script from 'next/script'
+
 import { Outfit } from 'next/font/google'
 import './globals.css'
 
@@ -63,12 +63,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={outfit.variable}>
       <head>
-        <Script
-          defer
-          data-domain="harmonicwaves.app"
-          src="https://plausible.io/js/script.js"
-          strategy="afterInteractive"
-        />
+        {/* Privacy-friendly analytics by Plausible */}
+        <script async src="https://plausible.io/js/pa-ZqKyEhbiJfRrJm3EgzV3w.js"></script>
+        <script dangerouslySetInnerHTML={{ __html: `window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()` }} />
       </head>
       <body>{children}</body>
     </html>

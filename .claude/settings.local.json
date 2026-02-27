@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(node:*)",
+      "Bash(cd \"C:/Users/rdzingel/Documents/MY_APPS/HARMONIC_WAVES/store.app\" && npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --yes 2>&1)",
+      "Bash(cd:*)",
+      "Bash(cd \"C:/Users/rdzingel/Documents/MY_APPS/HARMONIC_WAVES/store.app\" && npm install framer-motion 2>&1)",
+      "Bash(head:*)",
+      "Bash(cd \"C:/Users/rdzingel/Documents/MY_APPS/HARMONIC_WAVES/store.app\" && npm run build 2>&1)",
+      "Bash(cd \"C:/Users/rdzingel/Documents/MY_APPS/HARMONIC_WAVES/store.app\" && npm run dev 2>&1)",
+      "Bash(curl:*)",
+      "Bash(cd /c/Users/rdzingel/Documents/MY_APPS/HARMONIC_WAVES/store.app && npm run build 2>&1)",
+      "Bash(cd /c/Users/rdzingel/Documents/MY_APPS/HARMONIC_WAVES/store.app && npx vercel --prod 2>&1)",
+      "Bash(tail:*)",
+      "Bash(npx next:*)",
+      "Bash(npx vercel:*)",
+      "Bash(rm:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(npm ls:*)",
+      "WebFetch(domain:api.iconify.design)"
+    ]
+  }
+}
