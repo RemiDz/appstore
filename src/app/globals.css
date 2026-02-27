@@ -183,10 +183,10 @@ html, body {
 }
 
 @keyframes logoEntry {
-  0%   { opacity: 0; transform: scale(0.6); filter: blur(8px); }
-  40%  { opacity: 0.8; filter: blur(2px); }
-  70%  { transform: scale(1.03); filter: blur(0px); }
-  100% { opacity: 1; transform: scale(1); filter: blur(0px); }
+  0%   { opacity: 0; transform: scale(0.5) rotate(-180deg); }
+  60%  { opacity: 1; transform: scale(1.02) rotate(8deg); }
+  80%  { transform: scale(0.99) rotate(-3deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
 }
 
 /* ── Reduced Motion ────────────────────────────────── */
