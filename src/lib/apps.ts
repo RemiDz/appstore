@@ -100,4 +100,16 @@ export const apps: App[] = [
     glow2: '#FDE68A',
     device: 'mobile',
   },
+  {
+    id: 'airas',
+    name: 'Airas',
+    tagline: 'Breathwork & Air Intelligence',
+    description: 'Guided breathwork sessions powered by air quality and atmospheric data. Align your breath with the element of Air.',
+    url: 'https://airas.app',
+    accent: '#A8DADC',
+    accentRgb: '168,218,220',
+    glow1: '#6BA3A6',
+    glow2: '#D0ECED',
+    device: 'mobile',
+  },
 ]

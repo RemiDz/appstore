@@ -89,6 +89,21 @@ export default function AppIcon({ id, size = 48, color = 'white' }: AppIconProps
         </svg>
       )
 
+    case 'airas':
+      return (
+        <svg {...common} viewBox="0 0 48 48" stroke={color} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round">
+          {/* Left lung */}
+          <path d="M20 14c-2 0-4 2-5 5-2 4-3 8-3 12a4 4 0 0 0 4 4h2a2 2 0 0 0 2-2V14z" />
+          {/* Right lung */}
+          <path d="M28 14c2 0 4 2 5 5 2 4 3 8 3 12a4 4 0 0 1-4 4h-2a2 2 0 0 1-2-2V14z" />
+          {/* Trachea */}
+          <path d="M24 8v6" />
+          {/* Bronchi */}
+          <path d="M24 14l-4 4" />
+          <path d="M24 14l4 4" />
+        </svg>
+      )
+
     default:
       return null
   }

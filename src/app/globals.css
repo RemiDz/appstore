@@ -152,6 +152,11 @@ html, body {
   }
 }
 
+/* ── Grid Orphan Centering ─────────────────────────── */
+.hw-grid-card:last-child:nth-child(3n+1) {
+  grid-column: 2;
+}
+
 /* ── Icon Glow Pulse ───────────────────────────────── */
 @keyframes iconGlow {
   0%, 100% { transform: scale(0.8); opacity: 0.5; }

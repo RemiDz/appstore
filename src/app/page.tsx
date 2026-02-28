@@ -141,7 +141,7 @@ export default function Home() {
             visible={phase >= 2}
           />
 
-          {/* 3×2 Grid */}
+          {/* App Grid */}
           <div
             style={{
               display: 'grid',
