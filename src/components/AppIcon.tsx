@@ -69,6 +69,28 @@ export default function AppIcon({ id, size = 48, color = 'white' }: AppIconProps
         </svg>
       )
 
+    case 'astrara':
+      return (
+        <svg {...common} viewBox="0 0 48 48" stroke={color} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round">
+          {/* Outer circle — zodiac ring */}
+          <circle cx="24" cy="24" r="18" />
+          {/* Cardinal tick marks */}
+          <line x1="24" y1="6" x2="24" y2="10" />
+          <line x1="42" y1="24" x2="38" y2="24" />
+          <line x1="24" y1="42" x2="24" y2="38" />
+          <line x1="6" y1="24" x2="10" y2="24" />
+          {/* Inner circle — orbital path */}
+          <circle cx="24" cy="24" r="10" />
+          {/* Planet dots */}
+          <circle cx="24" cy="14" r="2" fill={color} stroke="none" />
+          <circle cx="31" cy="29" r="1.5" fill={color} stroke="none" />
+          <circle cx="16" cy="21" r="1" fill={color} stroke="none" opacity="0.6" />
+          {/* Centre sparkle — 4-point star */}
+          <line x1="24" y1="21" x2="24" y2="27" />
+          <line x1="21" y1="24" x2="27" y2="24" />
+        </svg>
+      )
+
     case 'tidara':
       return (
         <svg {...common} viewBox="0 0 48 48" stroke={color} strokeWidth={sw} strokeLinecap="round">

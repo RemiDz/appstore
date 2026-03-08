@@ -77,6 +77,18 @@ export const apps: App[] = [
     device: 'mobile',
   },
   {
+    id: 'astrara',
+    name: 'Astrara',
+    tagline: 'Live Cosmic Intelligence',
+    description: 'Real-time astrology intelligence with planetary positions and cosmic insights. Align your practice with the movements of the stars.',
+    url: 'https://astrara.app',
+    accent: '#7C3AED',
+    accentRgb: '124,58,237',
+    glow1: '#5B21B6',
+    glow2: '#A78BFA',
+    device: 'mobile',
+  },
+  {
     id: 'tidara',
     name: 'Tidara',
     tagline: 'Live Tidal Intelligence',
