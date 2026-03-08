@@ -72,22 +72,20 @@ export default function AppIcon({ id, size = 48, color = 'white' }: AppIconProps
     case 'astrara':
       return (
         <svg {...common} viewBox="0 0 48 48" stroke={color} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round">
-          {/* Outer circle — zodiac ring */}
-          <circle cx="24" cy="24" r="18" />
-          {/* Cardinal tick marks */}
-          <line x1="24" y1="6" x2="24" y2="10" />
-          <line x1="42" y1="24" x2="38" y2="24" />
-          <line x1="24" y1="42" x2="24" y2="38" />
-          <line x1="6" y1="24" x2="10" y2="24" />
-          {/* Inner circle — orbital path */}
-          <circle cx="24" cy="24" r="10" />
-          {/* Planet dots */}
-          <circle cx="24" cy="14" r="2" fill={color} stroke="none" />
-          <circle cx="31" cy="29" r="1.5" fill={color} stroke="none" />
-          <circle cx="16" cy="21" r="1" fill={color} stroke="none" opacity="0.6" />
-          {/* Centre sparkle — 4-point star */}
-          <line x1="24" y1="21" x2="24" y2="27" />
-          <line x1="21" y1="24" x2="27" y2="24" />
+          {/* Ring behind planet */}
+          <path d="M10 27 Q24 34 38 27" opacity="0.4" />
+          {/* Planet body */}
+          <circle cx="24" cy="24" r="8" />
+          {/* Ring in front of planet */}
+          <path d="M10 27 Q24 20 38 27" />
+          {/* Star sparkle top-right */}
+          <line x1="36" y1="10" x2="36" y2="15" />
+          <line x1="33.5" y1="12.5" x2="38.5" y2="12.5" />
+          {/* Star sparkle bottom-left */}
+          <line x1="11" y1="33" x2="11" y2="37" />
+          <line x1="9" y1="35" x2="13" y2="35" />
+          {/* Small dot star */}
+          <circle cx="38" cy="32" r="1" fill={color} stroke="none" />
         </svg>
       )
 
